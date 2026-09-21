@@ -745,83 +745,82 @@ document.querySelector('#staff')
    TELEGRAM / GOOGLE SCRIPT
    ========================= */
 
-document.querySelector('#send')
-.onclick=async()=>{
+document.querySelector('#send').onclick = async () => {
 
-  const button=
-    document.querySelector('#send');
+  const button = document.querySelector('#send');
 
-  const who=
-    document.querySelector('#staff').value;
+  const who = document.querySelector('#staff').value;
 
-  const items=
-    Object.values(buy)
-      .flat()
-      .filter(x=>get('b_'+x));
+  const items = Object.values(buy)
+    .flat()
+    .filter(x => get('b_' + x));
 
-  if(!who || !items.length)return;
+  if (!who || !items.length) return;
 
-  button.disabled=true;
-  button.textContent='Отправляем…';
+  button.disabled = true;
+  button.textContent = 'Отправляем…';
 
-  try{
+  try {
 
-    const response=
-      await fetch(
-        GOOGLE_SCRIPT_URL,
-        {
-          method:'POST',
-          headers:{
-            'Content-Type':'text/plain;charset=utf-8'
-          },
-          body:JSON.stringify({
-            employee:who,
-            items:items
-          })
-        }
-      );
+    const response = await fetch(
+      GOOGLE_SCRIPT_URL,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify({
+          employee: who,
+          items: items
+        })
+      }
+    );
 
-    const result=
-      await response.json();
+    const text = await response.text();
 
-    if(!result.success){
+    console.log('Apps Script response:', text);
 
+    let result;
+
+    try {
+      result = JSON.parse(text);
+    } catch {
       throw new Error(
-        result.error || 'Telegram error'
+        'Apps Script вернул неожиданный ответ'
       );
+    }
 
+    if (!result.success) {
+      throw new Error(
+        result.error || 'Ошибка Telegram'
+      );
     }
 
     toast('✓ Закупка отправлена в Telegram');
 
-    items.forEach(x=>
-      set('b_'+x,false)
-    );
+    items.forEach(item => {
+      set('b_' + item, false);
+    });
 
     render();
 
-  }catch(error){
+  } catch (error) {
 
-    console.error(error);
+    console.error('SEND ERROR:', error);
 
     toast(
-      'Не удалось отправить заявку'
+      'Ошибка отправки. Открой консоль браузера.'
     );
 
-    update();
+  } finally {
 
-  }finally{
-
-    button.textContent=
-      'Отправить закупку';
+    button.textContent = 'Отправить закупку';
 
     update();
 
   }
 
 };
-
-
 /* =========================
    DATE
    ========================= */
