@@ -3,9 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>LooLoo Kitchen</title>
 
 <style>
+
 :root{
   --green:#17372f;
   --green2:#21483e;
@@ -18,7 +20,9 @@
   --red:#a64b3d;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box
+}
 
 body{
   margin:0;
@@ -125,8 +129,13 @@ body{
   box-shadow:0 2px 8px #0000000a
 }
 
-.panel{display:none}
-.panel.active{display:block}
+.panel{
+  display:none
+}
+
+.panel.active{
+  display:block
+}
 
 .summary{
   display:flex;
@@ -328,6 +337,7 @@ body{
 }
 
 @media(max-width:520px){
+
   .app{
     padding:16px 12px 86px
   }
@@ -351,7 +361,9 @@ body{
   .select{
     min-width:0
   }
+
 }
+
 </style>
 </head>
 
@@ -360,62 +372,148 @@ body{
 <div class="app">
 
 <header class="top">
+
   <div class="brand">
-    <div class="mark">LL</div>
-    <div>
-      <div class="eyebrow">LooLoo</div>
-      <div class="title">Kitchen</div>
+
+    <div class="mark">
+      LL
     </div>
+
+    <div>
+
+      <div class="eyebrow">
+        LooLoo
+      </div>
+
+      <div class="title">
+        Kitchen
+      </div>
+
+    </div>
+
   </div>
 
   <div class="date" id="date"></div>
+
 </header>
 
+
 <section class="hero">
-  <h1>Кухня под контролем.</h1>
-  <p>Отметь закупку и заготовки. Ничего лишнего.</p>
+
+  <h1>
+    Кухня под контролем.
+  </h1>
+
+  <p>
+    Отметь закупку и заготовки. Ничего лишнего.
+  </p>
+
 </section>
+
 
 <div class="tabs">
-  <button class="tab active" data-tab="prep">🥣 Заготовки</button>
-  <button class="tab" data-tab="buy">🛒 Закупка</button>
+
+  <button
+    class="tab active"
+    data-tab="prep"
+  >
+    🥣 Заготовки
+  </button>
+
+  <button
+    class="tab"
+    data-tab="buy"
+  >
+    🛒 Закупка
+  </button>
+
 </div>
 
-<section id="prep" class="panel active">
+
+<section
+  id="prep"
+  class="panel active"
+>
 
   <div class="summary">
+
     <div>
-      <strong id="prepCount">0/12</strong>
-      <div class="date">заготовок выполнено</div>
+
+      <strong id="prepCount">
+        0/12
+      </strong>
+
+      <div class="date">
+        заготовок выполнено
+      </div>
+
     </div>
 
-    <button class="clear" id="resetPrep">Сбросить</button>
+    <button
+      class="clear"
+      id="resetPrep"
+    >
+      Сбросить
+    </button>
+
   </div>
+
 
   <div class="prep-progress">
+
     <i id="prepBar"></i>
+
   </div>
+
 
   <div class="section">
-    <div class="section-title">Сегодня</div>
-    <div class="list" id="prepList"></div>
+
+    <div class="section-title">
+      Сегодня
+    </div>
+
+    <div
+      class="list"
+      id="prepList"
+    ></div>
+
   </div>
 
+
   <div class="note">
-    В V1 только отметка «сделано». Нормы по дням недели и контроль остатков добавим позже.
+    В V1 только отметка «сделано».
+    Нормы по дням недели и контроль остатков добавим позже.
   </div>
 
 </section>
 
-<section id="buy" class="panel">
+
+<section
+  id="buy"
+  class="panel"
+>
 
   <div class="summary">
+
     <div>
-      <strong id="buyCount">0</strong>
-      <div class="date">позиций отмечено</div>
+
+      <strong id="buyCount">
+        0
+      </strong>
+
+      <div class="date">
+        позиций отмечено
+      </div>
+
     </div>
 
-    <button class="clear" id="resetBuy">Сбросить</button>
+    <button
+      class="clear"
+      id="resetBuy"
+    >
+      Сбросить
+    </button>
+
   </div>
 
   <div id="buyList"></div>
@@ -424,15 +522,27 @@ body{
 
 </div>
 
+
 <div class="bottom">
 
   <div class="bottom-inner">
 
-    <select class="select" id="staff">
-      <option value="">Кто отправляет?</option>
+    <select
+      class="select"
+      id="staff"
+    >
+
+      <option value="">
+        Кто отправляет?
+      </option>
+
     </select>
 
-    <button class="send" id="send" disabled>
+    <button
+      class="send"
+      id="send"
+      disabled
+    >
       Отправить закупку
     </button>
 
@@ -440,13 +550,53 @@ body{
 
 </div>
 
-<div class="toast" id="toast"></div>
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+<!-- Скрытая форма для отправки в Apps Script -->
+<iframe
+  name="telegramFrame"
+  id="telegramFrame"
+  style="display:none"
+></iframe>
+
+<form
+  id="telegramForm"
+  method="POST"
+  target="telegramFrame"
+  style="display:none"
+>
+
+  <input
+    type="hidden"
+    name="payload"
+    id="telegramPayload"
+  >
+
+</form>
+
 
 <script>
 
+
+/* =========================
+   GOOGLE APPS SCRIPT
+   ========================= */
+
 const GOOGLE_SCRIPT_URL =
 'https://script.google.com/macros/s/AKfycbwh1dk0pA5WHj-0uw2kRhivOI0PoVXLiA7DzCA_r6xxXN5Tc6rCtgdE5PnoNHFW14YyDQ/exec';
-const staff=[
+
+
+/* =========================
+   СОТРУДНИКИ
+   ========================= */
+
+const staff = [
+
   'Абраам',
   'Аркадий',
   'Арзуман',
@@ -454,9 +604,16 @@ const staff=[
   'Айк',
   'Марине',
   'Нинель'
+
 ];
 
-const prep=[
+
+/* =========================
+   ЗАГОТОВКИ
+   ========================= */
+
+const prep = [
+
   'Рис',
   'Спайси соус',
   'Сырный соус',
@@ -469,121 +626,178 @@ const prep=[
   'Креветки темпура',
   'Курица су-вид',
   'Курица маринованная'
+
 ];
 
-const buy={
 
-'🍚 Сухие продукты':[
-  'Рис для суши',
-  'Рисовый уксус',
-  'Нори',
-  'Панко',
-  'Кунжут белый',
-  'Кунжут чёрный',
-  'Сахар',
-  'Соль',
-  'Растительное масло',
-  'Кукурузный крахмал'
-],
+/* =========================
+   ЗАКУПКА
+   ========================= */
 
-'🐟 Рыба и морепродукты':[
-  'Лосось',
-  'Креветка',
-  'Крабовое мясо',
-  'Кальмар',
-  'Мидии',
-  'Угорь'
-],
+const buy = {
 
-'🥫 Соусы и азиатские продукты':[
-  'Майонез',
-  'Шрирача',
-  'Соевый соус',
-  'Унаги',
-  'Терияки',
-  'Sweet Chili',
-  'Рыбный соус',
-  'Мирин',
-  'Васаби',
-  'Маринованный имбирь',
-  'Чука',
-  'Кунжутный соус'
-],
+  '🍚 Сухие продукты': [
 
-'🐟 Икра / топпинги':[
-  'Масаго',
-  'Тобико',
-  'Каперсы',
-  'Лук фри'
-],
+    'Рис для суши',
+    'Рисовый уксус',
+    'Нори',
+    'Панко',
+    'Кунжут белый',
+    'Кунжут чёрный',
+    'Сахар',
+    'Соль',
+    'Растительное масло',
+    'Кукурузный крахмал'
 
-'🥬 Овощи и зелень':[
-  'Огурец',
-  'Помидор',
-  'Листовой салат / мароль',
-  'Авокадо',
-  'Лук',
-  'Чеснок'
-],
+  ],
 
-'🧀 Молочные продукты':[
-  'Сливочный сыр',
-  'Чеддер',
-  'Моцарелла',
-  'Пармезан',
-  'Сливки',
-  'Молоко'
-],
+  '🐟 Рыба и морепродукты': [
 
-'🍔 Бургеры / горячее':[
-  'Булочки для бургеров',
-  'Куриное филе',
-  'Картофель фри',
-  'Яйца'
-],
+    'Лосось',
+    'Креветка',
+    'Крабовое мясо',
+    'Кальмар',
+    'Мидии',
+    'Угорь'
 
-'🥣 Для новых блюд':[
-  'Тыква',
-  'Кокосовое молоко',
-  'Паприка',
-  'Лимон',
-  'Лайм'
-]
+  ],
+
+  '🥫 Соусы и азиатские продукты': [
+
+    'Майонез',
+    'Шрирача',
+    'Соевый соус',
+    'Унаги',
+    'Терияки',
+    'Sweet Chili',
+    'Рыбный соус',
+    'Мирин',
+    'Васаби',
+    'Маринованный имбирь',
+    'Чука',
+    'Кунжутный соус'
+
+  ],
+
+  '🐟 Икра / топпинги': [
+
+    'Масаго',
+    'Тобико',
+    'Каперсы',
+    'Лук фри'
+
+  ],
+
+  '🥬 Овощи и зелень': [
+
+    'Огурец',
+    'Помидор',
+    'Листовой салат / мароль',
+    'Авокадо',
+    'Лук',
+    'Чеснок'
+
+  ],
+
+  '🧀 Молочные продукты': [
+
+    'Сливочный сыр',
+    'Чеддер',
+    'Моцарелла',
+    'Пармезан',
+    'Сливки',
+    'Молоко'
+
+  ],
+
+  '🍔 Бургеры / горячее': [
+
+    'Булочки для бургеров',
+    'Куриное филе',
+    'Картофель фри',
+    'Яйца'
+
+  ],
+
+  '🥣 Для новых блюд': [
+
+    'Тыква',
+    'Кокосовое молоко',
+    'Паприка',
+    'Лимон',
+    'Лайм'
+
+  ]
 
 };
 
-const key=(p)=>'llk_'+p;
 
-const get=(p)=>
-localStorage.getItem(key(p))==='1';
+/* =========================
+   LOCAL STORAGE
+   ========================= */
 
-const set=(p,v)=>
-localStorage.setItem(key(p),v?'1':'0');
+const key = p =>
+  'llk_' + p;
 
-const prepList=document.querySelector('#prepList');
-const buyList=document.querySelector('#buyList');
+
+const get = p =>
+  localStorage.getItem(key(p)) === '1';
+
+
+const set = (p,v) =>
+  localStorage.setItem(
+    key(p),
+    v ? '1' : '0'
+  );
+
+
+/* =========================
+   ELEMENTS
+   ========================= */
+
+const prepList =
+  document.querySelector('#prepList');
+
+const buyList =
+  document.querySelector('#buyList');
+
+
+/* =========================
+   ROW
+   ========================= */
 
 function row(name,type){
 
-  const r=document.createElement('div');
+  const r =
+    document.createElement('div');
 
-  r.className=
-    'row'+
-    (get(type+name)?' checked':'');
+  r.className =
+    'row' +
+    (get(type + name)
+      ? ' checked'
+      : '');
 
-  r.innerHTML=
-    '<div class="box"></div>'+
+  r.innerHTML =
+    '<div class="box"></div>' +
     '<div class="name"></div>';
 
-  r.querySelector('.name').textContent=name;
+  r.querySelector('.name')
+    .textContent = name;
 
-  r.onclick=()=>{
+  r.onclick = () => {
 
-    const v=!get(type+name);
+    const v =
+      !get(type + name);
 
-    set(type+name,v);
+    set(
+      type + name,
+      v
+    );
 
-    r.classList.toggle('checked',v);
+    r.classList.toggle(
+      'checked',
+      v
+    );
 
     update();
 
@@ -592,250 +806,391 @@ function row(name,type){
   return r;
 }
 
+
+/* =========================
+   RENDER
+   ========================= */
+
 function render(){
 
-  prepList.innerHTML='';
+  prepList.innerHTML = '';
 
-  prep.forEach(x=>
+  prep.forEach(x => {
+
     prepList.appendChild(
       row(x,'p_')
-    )
-  );
+    );
 
-  buyList.innerHTML='';
+  });
+
+
+  buyList.innerHTML = '';
+
 
   Object.entries(buy).forEach(
-    ([cat,items])=>{
+    ([cat,items]) => {
 
-      const s=document.createElement('div');
+      const s =
+        document.createElement('div');
 
-      s.className='section';
+      s.className =
+        'section';
 
-      s.innerHTML=
-        '<div class="section-title"></div>'+
+      s.innerHTML =
+        '<div class="section-title"></div>' +
         '<div class="list"></div>';
 
-      s.querySelector('.section-title')
-        .textContent=cat;
+      s.querySelector(
+        '.section-title'
+      ).textContent = cat;
 
-      items.forEach(x=>
+
+      items.forEach(x => {
+
         s.querySelector('.list')
-          .appendChild(row(x,'b_'))
-      );
+          .appendChild(
+            row(x,'b_')
+          );
+
+      });
+
 
       buyList.appendChild(s);
 
     }
   );
 
-  const select=document.querySelector('#staff');
 
-  select.innerHTML=
-    '<option value="">Кто отправляет?</option>';
+  const select =
+    document.querySelector('#staff');
 
-  staff.forEach(x=>{
 
-    const o=document.createElement('option');
+  select.innerHTML =
+    '<option value="">' +
+    'Кто отправляет?' +
+    '</option>';
 
-    o.value=x;
-    o.textContent=x;
+
+  staff.forEach(x => {
+
+    const o =
+      document.createElement('option');
+
+    o.value = x;
+
+    o.textContent = x;
 
     select.appendChild(o);
 
   });
 
+
   update();
 
 }
 
+
+/* =========================
+   UPDATE
+   ========================= */
+
 function update(){
 
-  const pc=
-    prep.filter(x=>get('p_'+x)).length;
+  const pc =
+    prep.filter(
+      x => get('p_' + x)
+    ).length;
 
-  document.querySelector('#prepCount')
-    .textContent=
-    pc+'/'+prep.length;
 
-  document.querySelector('#prepBar')
-    .style.width=
-    (pc/prep.length*100)+'%';
+  document.querySelector(
+    '#prepCount'
+  ).textContent =
+    pc + '/' + prep.length;
 
-  let bc=0;
+
+  document.querySelector(
+    '#prepBar'
+  ).style.width =
+    (pc / prep.length * 100) + '%';
+
+
+  let bc = 0;
+
 
   Object.values(buy)
     .flat()
-    .forEach(x=>{
-      if(get('b_'+x))bc++;
+    .forEach(x => {
+
+      if(get('b_' + x)){
+        bc++;
+      }
+
     });
 
-  document.querySelector('#buyCount')
-    .textContent=bc;
 
-  document.querySelector('#send').disabled=
-    bc===0 ||
-    !document.querySelector('#staff').value;
+  document.querySelector(
+    '#buyCount'
+  ).textContent = bc;
+
+
+  document.querySelector(
+    '#send'
+  ).disabled =
+    bc === 0 ||
+    !document.querySelector(
+      '#staff'
+    ).value;
 
 }
 
+
+/* =========================
+   TOAST
+   ========================= */
+
 function toast(t){
 
-  const x=document.querySelector('#toast');
+  const x =
+    document.querySelector('#toast');
 
-  x.textContent=t;
+  x.textContent = t;
 
   x.classList.add('show');
 
   setTimeout(
-    ()=>x.classList.remove('show'),
+    () =>
+      x.classList.remove('show'),
     3000
   );
 
 }
 
+
+/* =========================
+   RESET
+   ========================= */
+
 function reset(prefix,arr){
 
-  arr.forEach(x=>
-    set(prefix+x,false)
-  );
+  arr.forEach(x => {
+
+    set(
+      prefix + x,
+      false
+    );
+
+  });
 
   render();
 
 }
 
-document.querySelectorAll('.tab')
-.forEach(b=>{
 
-  b.onclick=()=>{
+/* =========================
+   TABS
+   ========================= */
 
-    document.querySelectorAll('.tab')
-      .forEach(x=>
-        x.classList.remove('active')
-      );
+document
+  .querySelectorAll('.tab')
+  .forEach(b => {
 
-    document.querySelectorAll('.panel')
-      .forEach(x=>
-        x.classList.remove('active')
-      );
+    b.onclick = () => {
 
-    b.classList.add('active');
+      document
+        .querySelectorAll('.tab')
+        .forEach(x =>
+          x.classList.remove(
+            'active'
+          )
+        );
 
-    document.querySelector(
-      '#'+b.dataset.tab
-    ).classList.add('active');
 
-  };
+      document
+        .querySelectorAll('.panel')
+        .forEach(x =>
+          x.classList.remove(
+            'active'
+          )
+        );
 
-});
 
-document.querySelector('#resetPrep')
-.onclick=()=>reset('p_',prep);
+      b.classList.add('active');
 
-document.querySelector('#resetBuy')
-.onclick=()=>reset(
-  'b_',
-  Object.values(buy).flat()
-);
 
-document.querySelector('#staff')
-.onchange=update;
+      document
+        .querySelector(
+          '#' + b.dataset.tab
+        )
+        .classList.add('active');
+
+    };
+
+  });
 
 
 /* =========================
-   TELEGRAM / GOOGLE SCRIPT
+   RESET BUTTONS
    ========================= */
 
-document.querySelector('#send').onclick = async () => {
-
-  const button = document.querySelector('#send');
-
-  const who = document.querySelector('#staff').value;
-
-  const items = Object.values(buy)
-    .flat()
-    .filter(x => get('b_' + x));
-
-  if (!who || !items.length) return;
-
-  button.disabled = true;
-  button.textContent = 'Отправляем…';
-
-  try {
-
-    const response = await fetch(
-      GOOGLE_SCRIPT_URL,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
-        },
-        body: JSON.stringify({
-          employee: who,
-          items: items
-        })
-      }
+document
+  .querySelector('#resetPrep')
+  .onclick = () =>
+    reset(
+      'p_',
+      prep
     );
 
-    const text = await response.text();
 
-    console.log('Apps Script response:', text);
-
-    let result;
-
-    try {
-      result = JSON.parse(text);
-    } catch {
-      throw new Error(
-        'Apps Script вернул неожиданный ответ'
-      );
-    }
-
-    if (!result.success) {
-      throw new Error(
-        result.error || 'Ошибка Telegram'
-      );
-    }
-
-    toast('✓ Закупка отправлена в Telegram');
-
-    items.forEach(item => {
-      set('b_' + item, false);
-    });
-
-    render();
-
-  } catch (error) {
-
-    console.error('SEND ERROR:', error);
-
-    toast(
-      'Ошибка отправки. Открой консоль браузера.'
+document
+  .querySelector('#resetBuy')
+  .onclick = () =>
+    reset(
+      'b_',
+      Object.values(buy).flat()
     );
 
-  } finally {
 
-    button.textContent = 'Отправить закупку';
+/* =========================
+   STAFF
+   ========================= */
 
-    update();
+document
+  .querySelector('#staff')
+  .onchange = update;
 
-  }
 
-};
+/* =========================
+   TELEGRAM
+   ========================= */
+
+document
+  .querySelector('#send')
+  .onclick = () => {
+
+    const button =
+      document.querySelector('#send');
+
+    const who =
+      document.querySelector(
+        '#staff'
+      ).value;
+
+
+    const items =
+      Object.values(buy)
+        .flat()
+        .filter(
+          x => get('b_' + x)
+        );
+
+
+    if(
+      !who ||
+      !items.length
+    ){
+      return;
+    }
+
+
+    button.disabled = true;
+
+    button.textContent =
+      'Отправляем…';
+
+
+    const payload = {
+
+      employee: who,
+
+      items: items
+
+    };
+
+
+    /*
+      Передаём JSON как обычное
+      поле формы.
+
+      Это позволяет обойти CORS.
+    */
+
+    document
+      .querySelector(
+        '#telegramPayload'
+      )
+      .value =
+      JSON.stringify(payload);
+
+
+    const form =
+      document.querySelector(
+        '#telegramForm'
+      );
+
+
+    form.action =
+      GOOGLE_SCRIPT_URL;
+
+
+    /*
+      После отправки через iframe
+      считаем заявку отправленной.
+    */
+
+    form.submit();
+
+
+    setTimeout(() => {
+
+      toast(
+        '✓ Закупка отправлена в Telegram'
+      );
+
+
+      items.forEach(item => {
+
+        set(
+          'b_' + item,
+          false
+        );
+
+      });
+
+
+      render();
+
+      button.textContent =
+        'Отправить закупку';
+
+      update();
+
+    }, 1200);
+
+  };
+
+
 /* =========================
    DATE
    ========================= */
 
-document.querySelector('#date')
-.textContent=
-new Intl.DateTimeFormat(
-  'ru-RU',
-  {
-    day:'2-digit',
-    month:'2-digit',
-    year:'numeric'
-  }
-).format(new Date());
+document
+  .querySelector('#date')
+  .textContent =
+  new Intl.DateTimeFormat(
+    'ru-RU',
+    {
+      day:'2-digit',
+      month:'2-digit',
+      year:'numeric'
+    }
+  ).format(
+    new Date()
+  );
 
+
+/* =========================
+   START
+   ========================= */
 
 render();
 
