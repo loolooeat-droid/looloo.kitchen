@@ -1,10 +1,17 @@
 <!doctype html>
 <html lang="ru">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
 
 <title>LooLoo Kitchen</title>
+
 
 <style>
 
@@ -17,7 +24,6 @@
   --ink:#1b211e;
   --muted:#737973;
   --line:#e4dfd3;
-  --red:#a64b3d;
 }
 
 *{
@@ -28,7 +34,13 @@ body{
   margin:0;
   background:var(--cream);
   color:var(--ink);
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif
 }
 
 .app{
@@ -150,11 +162,6 @@ body{
 
 .summary strong{
   font-size:20px
-}
-
-.summary span{
-  font-size:12px;
-  color:var(--muted)
 }
 
 .section{
@@ -294,7 +301,9 @@ body{
   position:fixed;
   left:50%;
   bottom:78px;
-  transform:translateX(-50%) translateY(15px);
+  transform:
+    translateX(-50%)
+    translateY(15px);
   background:var(--green);
   color:#fff;
   padding:12px 16px;
@@ -310,7 +319,9 @@ body{
 
 .toast.show{
   opacity:1;
-  transform:translateX(-50%) translateY(0)
+  transform:
+    translateX(-50%)
+    translateY(0)
 }
 
 .note{
@@ -365,11 +376,15 @@ body{
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="app">
+
 
 <header class="top">
 
@@ -393,7 +408,11 @@ body{
 
   </div>
 
-  <div class="date" id="date"></div>
+
+  <div
+    class="date"
+    id="date"
+  ></div>
 
 </header>
 
@@ -405,7 +424,8 @@ body{
   </h1>
 
   <p>
-    Отметь закупку и заготовки. Ничего лишнего.
+    Отметь закупку и заготовки.
+    Ничего лишнего.
   </p>
 
 </section>
@@ -435,6 +455,7 @@ body{
   class="panel active"
 >
 
+
   <div class="summary">
 
     <div>
@@ -449,6 +470,7 @@ body{
 
     </div>
 
+
     <button
       class="clear"
       id="resetPrep"
@@ -460,9 +482,7 @@ body{
 
 
   <div class="prep-progress">
-
     <i id="prepBar"></i>
-
   </div>
 
 
@@ -482,7 +502,8 @@ body{
 
   <div class="note">
     В V1 только отметка «сделано».
-    Нормы по дням недели и контроль остатков добавим позже.
+    Нормы по дням недели и контроль
+    остатков добавим позже.
   </div>
 
 </section>
@@ -492,6 +513,7 @@ body{
   id="buy"
   class="panel"
 >
+
 
   <div class="summary">
 
@@ -507,6 +529,7 @@ body{
 
     </div>
 
+
     <button
       class="clear"
       id="resetBuy"
@@ -516,9 +539,11 @@ body{
 
   </div>
 
+
   <div id="buyList"></div>
 
 </section>
+
 
 </div>
 
@@ -526,6 +551,7 @@ body{
 <div class="bottom">
 
   <div class="bottom-inner">
+
 
     <select
       class="select"
@@ -538,6 +564,7 @@ body{
 
     </select>
 
+
     <button
       class="send"
       id="send"
@@ -545,6 +572,7 @@ body{
     >
       Отправить закупку
     </button>
+
 
   </div>
 
@@ -555,29 +583,6 @@ body{
   class="toast"
   id="toast"
 ></div>
-
-
-<!-- Скрытая форма для отправки в Apps Script -->
-<iframe
-  name="telegramFrame"
-  id="telegramFrame"
-  style="display:none"
-></iframe>
-
-<form
-  id="telegramForm"
-  method="POST"
-  target="telegramFrame"
-  style="display:none"
->
-
-  <input
-    type="hidden"
-    name="payload"
-    id="telegramPayload"
-  >
-
-</form>
 
 
 <script>
@@ -733,7 +738,7 @@ const buy = {
 
 
 /* =========================
-   LOCAL STORAGE
+   STORAGE
    ========================= */
 
 const key = p =>
@@ -741,7 +746,9 @@ const key = p =>
 
 
 const get = p =>
-  localStorage.getItem(key(p)) === '1';
+  localStorage.getItem(
+    key(p)
+  ) === '1';
 
 
 const set = (p,v) =>
@@ -756,10 +763,14 @@ const set = (p,v) =>
    ========================= */
 
 const prepList =
-  document.querySelector('#prepList');
+  document.querySelector(
+    '#prepList'
+  );
 
 const buyList =
-  document.querySelector('#buyList');
+  document.querySelector(
+    '#buyList'
+  );
 
 
 /* =========================
@@ -773,37 +784,43 @@ function row(name,type){
 
   r.className =
     'row' +
-    (get(type + name)
+    (
+      get(type + name)
       ? ' checked'
-      : '');
+      : ''
+    );
 
   r.innerHTML =
     '<div class="box"></div>' +
     '<div class="name"></div>';
 
-  r.querySelector('.name')
-    .textContent = name;
+  r.querySelector(
+    '.name'
+  ).textContent = name;
+
 
   r.onclick = () => {
 
-    const v =
+    const value =
       !get(type + name);
 
     set(
       type + name,
-      v
+      value
     );
 
     r.classList.toggle(
       'checked',
-      v
+      value
     );
 
     update();
 
   };
 
+
   return r;
+
 }
 
 
@@ -815,10 +832,11 @@ function render(){
 
   prepList.innerHTML = '';
 
-  prep.forEach(x => {
+
+  prep.forEach(item => {
 
     prepList.appendChild(
-      row(x,'p_')
+      row(item,'p_')
     );
 
   });
@@ -827,42 +845,55 @@ function render(){
   buyList.innerHTML = '';
 
 
-  Object.entries(buy).forEach(
-    ([cat,items]) => {
+  Object.entries(buy)
+    .forEach(
+      ([category,items]) => {
 
-      const s =
-        document.createElement('div');
-
-      s.className =
-        'section';
-
-      s.innerHTML =
-        '<div class="section-title"></div>' +
-        '<div class="list"></div>';
-
-      s.querySelector(
-        '.section-title'
-      ).textContent = cat;
-
-
-      items.forEach(x => {
-
-        s.querySelector('.list')
-          .appendChild(
-            row(x,'b_')
+        const section =
+          document.createElement(
+            'div'
           );
 
-      });
+        section.className =
+          'section';
 
 
-      buyList.appendChild(s);
+        section.innerHTML =
+          '<div class="section-title"></div>' +
+          '<div class="list"></div>';
 
-    }
-  );
+
+        section
+          .querySelector(
+            '.section-title'
+          )
+          .textContent =
+          category;
+
+
+        items.forEach(item => {
+
+          section
+            .querySelector('.list')
+            .appendChild(
+              row(item,'b_')
+            );
+
+        });
+
+
+        buyList.appendChild(
+          section
+        );
+
+      }
+    );
 
 
   const select =
-    document.querySelector('#staff');
+    document.querySelector(
+      '#staff'
+    );
 
 
   select.innerHTML =
@@ -871,16 +902,19 @@ function render(){
     '</option>';
 
 
-  staff.forEach(x => {
+  staff.forEach(person => {
 
-    const o =
-      document.createElement('option');
+    const option =
+      document.createElement(
+        'option'
+      );
 
-    o.value = x;
+    option.value = person;
+    option.textContent = person;
 
-    o.textContent = x;
-
-    select.appendChild(o);
+    select.appendChild(
+      option
+    );
 
   });
 
@@ -896,33 +930,39 @@ function render(){
 
 function update(){
 
-  const pc =
+  const prepCount =
     prep.filter(
-      x => get('p_' + x)
+      item => get('p_' + item)
     ).length;
 
 
   document.querySelector(
     '#prepCount'
   ).textContent =
-    pc + '/' + prep.length;
+    prepCount + '/' + prep.length;
 
 
   document.querySelector(
     '#prepBar'
   ).style.width =
-    (pc / prep.length * 100) + '%';
+    (
+      prepCount /
+      prep.length *
+      100
+    ) + '%';
 
 
-  let bc = 0;
+  let buyCount = 0;
 
 
   Object.values(buy)
     .flat()
-    .forEach(x => {
+    .forEach(item => {
 
-      if(get('b_' + x)){
-        bc++;
+      if(
+        get('b_' + item)
+      ){
+        buyCount++;
       }
 
     });
@@ -930,13 +970,14 @@ function update(){
 
   document.querySelector(
     '#buyCount'
-  ).textContent = bc;
+  ).textContent =
+    buyCount;
 
 
   document.querySelector(
     '#send'
   ).disabled =
-    bc === 0 ||
+    buyCount === 0 ||
     !document.querySelector(
       '#staff'
     ).value;
@@ -948,18 +989,26 @@ function update(){
    TOAST
    ========================= */
 
-function toast(t){
+function toast(message){
 
-  const x =
-    document.querySelector('#toast');
+  const element =
+    document.querySelector(
+      '#toast'
+    );
 
-  x.textContent = t;
+  element.textContent =
+    message;
 
-  x.classList.add('show');
+  element.classList.add(
+    'show'
+  );
+
 
   setTimeout(
     () =>
-      x.classList.remove('show'),
+      element.classList.remove(
+        'show'
+      ),
     3000
   );
 
@@ -970,16 +1019,17 @@ function toast(t){
    RESET
    ========================= */
 
-function reset(prefix,arr){
+function reset(prefix,items){
 
-  arr.forEach(x => {
+  items.forEach(item => {
 
     set(
-      prefix + x,
+      prefix + item,
       false
     );
 
   });
+
 
   render();
 
@@ -992,14 +1042,14 @@ function reset(prefix,arr){
 
 document
   .querySelectorAll('.tab')
-  .forEach(b => {
+  .forEach(button => {
 
-    b.onclick = () => {
+    button.onclick = () => {
 
       document
         .querySelectorAll('.tab')
-        .forEach(x =>
-          x.classList.remove(
+        .forEach(tab =>
+          tab.classList.remove(
             'active'
           )
         );
@@ -1007,21 +1057,25 @@ document
 
       document
         .querySelectorAll('.panel')
-        .forEach(x =>
-          x.classList.remove(
+        .forEach(panel =>
+          panel.classList.remove(
             'active'
           )
         );
 
 
-      b.classList.add('active');
+      button.classList.add(
+        'active'
+      );
 
 
       document
         .querySelector(
-          '#' + b.dataset.tab
+          '#' + button.dataset.tab
         )
-        .classList.add('active');
+        .classList.add(
+          'active'
+        );
 
     };
 
@@ -1029,7 +1083,7 @@ document
 
 
 /* =========================
-   RESET BUTTONS
+   RESET
    ========================= */
 
 document
@@ -1056,21 +1110,26 @@ document
 
 document
   .querySelector('#staff')
-  .onchange = update;
+  .onchange =
+  update;
 
 
 /* =========================
-   TELEGRAM
+   SEND TO TELEGRAM
    ========================= */
 
 document
   .querySelector('#send')
-  .onclick = () => {
+  .onclick = async () => {
+
 
     const button =
-      document.querySelector('#send');
+      document.querySelector(
+        '#send'
+      );
 
-    const who =
+
+    const employee =
       document.querySelector(
         '#staff'
       ).value;
@@ -1080,13 +1139,14 @@ document
       Object.values(buy)
         .flat()
         .filter(
-          x => get('b_' + x)
+          item =>
+            get('b_' + item)
         );
 
 
     if(
-      !who ||
-      !items.length
+      !employee ||
+      items.length === 0
     ){
       return;
     }
@@ -1098,53 +1158,69 @@ document
       'Отправляем…';
 
 
-    const payload = {
-
-      employee: who,
-
-      items: items
-
-    };
+    try {
 
 
-    /*
-      Передаём JSON как обычное
-      поле формы.
+      const response =
+        await fetch(
+          GOOGLE_SCRIPT_URL,
+          {
+            method:'POST',
 
-      Это позволяет обойти CORS.
-    */
+            headers:{
+              'Content-Type':
+                'text/plain;charset=utf-8'
+            },
 
-    document
-      .querySelector(
-        '#telegramPayload'
-      )
-      .value =
-      JSON.stringify(payload);
+            body:
+              JSON.stringify({
+                employee:
+                  employee,
+
+                items:
+                  items
+              })
+          }
+        );
 
 
-    const form =
-      document.querySelector(
-        '#telegramForm'
+      const text =
+        await response.text();
+
+
+      console.log(
+        'Apps Script:',
+        text
       );
 
 
-    form.action =
-      GOOGLE_SCRIPT_URL;
+      let result;
 
 
-    /*
-      После отправки через iframe
-      считаем заявку отправленной.
-    */
+      try {
 
-    form.submit();
+        result =
+          JSON.parse(text);
+
+      } catch(error){
+
+        throw new Error(
+          'Apps Script вернул неправильный ответ'
+        );
+
+      }
 
 
-    setTimeout(() => {
+      if(
+        !result.success
+      ){
 
-      toast(
-        '✓ Закупка отправлена в Telegram'
-      );
+        throw new Error(
+          result.error ||
+          'Ошибка Telegram'
+        );
+
+      }
 
 
       items.forEach(item => {
@@ -1159,12 +1235,36 @@ document
 
       render();
 
+
+      toast(
+        '✓ Закупка отправлена в Telegram'
+      );
+
+
+    } catch(error) {
+
+
+      console.error(
+        'SEND ERROR:',
+        error
+      );
+
+
+      toast(
+        'Ошибка отправки'
+      );
+
+
+    } finally {
+
+
       button.textContent =
         'Отправить закупку';
 
+
       update();
 
-    }, 1200);
+    }
 
   };
 
@@ -1183,7 +1283,8 @@ document
       month:'2-digit',
       year:'numeric'
     }
-  ).format(
+  )
+  .format(
     new Date()
   );
 
@@ -1197,4 +1298,5 @@ render();
 </script>
 
 </body>
+
 </html>
