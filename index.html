@@ -24,6 +24,7 @@
   --ink:#1b211e;
   --muted:#737973;
   --line:#e4dfd3;
+  --red:#a64b3d;
 }
 
 *{
@@ -47,7 +48,7 @@ body{
   max-width:760px;
   margin:auto;
   min-height:100vh;
-  padding:20px 16px 90px
+  padding:20px 16px 100px
 }
 
 .top{
@@ -164,17 +165,12 @@ body{
   font-size:20px
 }
 
-.section{
-  margin:14px 0
+.summary-left{
+  min-width:0
 }
 
-.section-title{
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  color:var(--muted);
-  font-weight:800;
-  margin:18px 4px 8px
+.summary-right{
+  text-align:right
 }
 
 .list{
@@ -234,12 +230,33 @@ body{
 }
 
 .name{
-  font-size:14px
+  font-size:14px;
+  flex:1
 }
 
 .row.checked .name{
   text-decoration:line-through;
   color:#7c827e
+}
+
+.prep-meta{
+  font-size:10px;
+  color:var(--muted);
+  text-align:right;
+  line-height:1.3
+}
+
+.section{
+  margin:14px 0
+}
+
+.section-title{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--muted);
+  font-weight:800;
+  margin:18px 4px 8px
 }
 
 .bottom{
@@ -297,6 +314,55 @@ body{
   cursor:pointer
 }
 
+.action-button{
+  width:100%;
+  height:48px;
+  border:0;
+  border-radius:13px;
+  background:var(--green);
+  color:#fff;
+  font:inherit;
+  font-weight:800;
+  cursor:pointer;
+  margin-top:12px
+}
+
+.action-button:disabled{
+  opacity:.45;
+  cursor:not-allowed
+}
+
+.note{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.5;
+  margin:10px 4px
+}
+
+.prep-progress{
+  height:8px;
+  background:#e5e1d7;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:8px;
+  margin-bottom:14px
+}
+
+.prep-progress i{
+  display:block;
+  height:100%;
+  width:0;
+  background:var(--green);
+  transition:.2s
+}
+
+.sync{
+  font-size:11px;
+  color:var(--muted);
+  margin-top:8px;
+  text-align:center
+}
+
 .toast{
   position:fixed;
   left:50%;
@@ -324,33 +390,10 @@ body{
     translateY(0)
 }
 
-.note{
-  font-size:12px;
-  color:var(--muted);
-  line-height:1.5;
-  margin:10px 4px
-}
-
-.prep-progress{
-  height:8px;
-  background:#e5e1d7;
-  border-radius:10px;
-  overflow:hidden;
-  margin-top:8px
-}
-
-.prep-progress i{
-  display:block;
-  height:100%;
-  width:0;
-  background:var(--green);
-  transition:.2s
-}
-
 @media(max-width:520px){
 
   .app{
-    padding:16px 12px 86px
+    padding:16px 12px 100px
   }
 
   .hero{
@@ -424,7 +467,7 @@ body{
   </h1>
 
   <p>
-    Отметь закупку и заготовки.
+    Отметь заготовки и закупку.
     Ничего лишнего.
   </p>
 
@@ -450,6 +493,10 @@ body{
 </div>
 
 
+<!-- =====================================================
+     ЗАГОТОВКИ
+     ===================================================== -->
+
 <section
   id="prep"
   class="panel active"
@@ -458,10 +505,10 @@ body{
 
   <div class="summary">
 
-    <div>
+    <div class="summary-left">
 
       <strong id="prepCount">
-        0/12
+        0/43
       </strong>
 
       <div class="date">
@@ -482,7 +529,9 @@ body{
 
 
   <div class="prep-progress">
+
     <i id="prepBar"></i>
+
   </div>
 
 
@@ -500,14 +549,50 @@ body{
   </div>
 
 
+  <select
+    class="select"
+    id="prepStaff"
+    style="width:100%;margin-top:12px"
+  >
+
+    <option value="">
+      Кто проверяет?
+    </option>
+
+  </select>
+
+
+  <button
+    class="action-button"
+    id="prepReport"
+    disabled
+  >
+    ✓ Проверил заготовки
+  </button>
+
+
+  <div
+    class="sync"
+    id="syncStatus"
+  >
+    Синхронизация…
+  </div>
+
+
   <div class="note">
-    В V1 только отметка «сделано».
-    Нормы по дням недели и контроль
-    остатков добавим позже.
+
+    Все сотрудники видят один общий список.
+    Если один сотрудник отметил заготовку,
+    она становится отмеченной для всех.
+
   </div>
 
 </section>
 
+
+<!-- =====================================================
+     ЗАКУПКА
+     ===================================================== -->
 
 <section
   id="buy"
@@ -542,63 +627,60 @@ body{
 
   <div id="buyList"></div>
 
+
+  <select
+    class="select"
+    id="buyStaff"
+    style="width:100%;margin-top:12px"
+  >
+
+    <option value="">
+      Кто отправляет?
+    </option>
+
+  </select>
+
+
+  <button
+    class="action-button"
+    id="buySend"
+    disabled
+  >
+    Отправить закупку
+  </button>
+
+
+  <div class="note">
+
+    Пока закупка работает в текущем режиме.
+    Разделение на ежедневную закупку
+    и заказ поставщикам добавим следующим этапом.
+
+  </div>
+
 </section>
 
 
 </div>
 
 
-<div class="bottom">
-
-  <div class="bottom-inner">
-
-
-    <select
-      class="select"
-      id="staff"
-    >
-
-      <option value="">
-        Кто отправляет?
-      </option>
-
-    </select>
-
-
-    <button
-      class="send"
-      id="send"
-      disabled
-    >
-      Отправить закупку
-    </button>
-
-
-  </div>
-
-</div>
-
-
-<div
-  class="toast"
-  id="toast"
-></div>
+<div class="toast" id="toast"></div>
 
 
 <script>
 
 
-/* =========================
+/* =====================================================
    GOOGLE APPS SCRIPT
-   ========================= */
+   ===================================================== */
 
 const GOOGLE_SCRIPT_URL =
 'https://script.google.com/macros/s/AKfycbwh1dk0pA5WHj-0uw2kRhivOI0PoVXLiA7DzCA_r6xxXN5Tc6rCtgdE5PnoNHFW14YyDQ/exec';
 
 
-/* =========================
+/* =====================================================
    СОТРУДНИКИ
-   ========================= */
+   ===================================================== */
 
 const staff = [
 
@@ -613,9 +695,9 @@ const staff = [
 ];
 
 
-/* =========================
+/* =====================================================
    ЗАГОТОВКИ
-   ========================= */
+   ===================================================== */
 
 const prep = [
 
@@ -630,18 +712,52 @@ const prep = [
   'Мароль — салат',
   'Креветки темпура',
   'Курица су-вид',
-  'Курица маринованная'
+  'Курица маринованная',
+
+  'Свекла запеченная',
+  'Картофель бейби запеченный',
+  'Сулугуни в сливках',
+  'Тунец',
+  'Угорь — нарезка',
+  'Креветки отварные',
+  'Чука — салат',
+  'Зеленое масло',
+  'Песто',
+  'Васаби',
+  'Имбирь',
+  'Бульон рыбный',
+  'Мисо бульон куриный',
+  'Лапша отварная',
+  'Том ям кай',
+  'Том ям',
+  'Креветки очищенные',
+  'Мидии очищенные',
+  'Соус лава',
+  'Сыр сливочный — в рукаве',
+  'Халапеньо — нарезанный',
+
+  'Корн-дог — на шпажках',
+  'Краб микс с сыром',
+  'Сухари Цезарь',
+  'Соус Цезарь',
+  'Яйцо — отварное',
+  'Мицукан',
+  'Соевый соус',
+  'Кунжут — жареный',
+
+  'Тыквенный крем-суп'
 
 ];
 
 
-/* =========================
+/* =====================================================
    ЗАКУПКА
-   ========================= */
+   ===================================================== */
 
 const buy = {
 
-  '🍚 Сухие продукты': [
+
+  '🥫 Бакалея': [
 
     'Рис для суши',
     'Рисовый уксус',
@@ -652,22 +768,76 @@ const buy = {
     'Сахар',
     'Соль',
     'Растительное масло',
-    'Кукурузный крахмал'
+    'Кукурузный крахмал',
+
+    'Хлеб тостовый для гренок Цезарь',
+    'Мука обычная',
+    'Мука темпурная',
+    'Лапша яичная для рамена',
+    'Лист лайма',
+    'Каперсы'
 
   ],
+
+
+  '❄️ Заморозка': [
+
+    'Креветка 16/20',
+    'Креветка 21/25',
+    'Стрипсы куриные',
+    'Наггетсы',
+    'Сырные палочки',
+    'Картофель фри'
+
+  ],
+
 
   '🐟 Рыба и морепродукты': [
 
     'Лосось',
-    'Креветка',
+    'Тунец филе',
     'Крабовое мясо',
-    'Кальмар',
-    'Мидии',
-    'Угорь'
+    'Кольца кальмаров',
+    'Микс морепродуктов',
+    'Угорь',
+
+    'Мидии — на одной створке',
+    'Мидии — на двух створках',
+    'Мидии — без ракушки'
 
   ],
 
-  '🥫 Соусы и азиатские продукты': [
+
+  '🥬 Овощи и зелень': [
+
+    'Огурец',
+    'Помидор',
+    'Листовой салат / мароль',
+    'Авокадо',
+    'Лук',
+    'Чеснок',
+    'Грибы шампиньоны',
+    'Кинза',
+    'Лимон',
+    'Лайм',
+    'Тыква'
+
+  ],
+
+
+  '🧀 Молочные': [
+
+    'Сливочный сыр',
+    'Моцарелла',
+    'Чеддер',
+    'Пармезан',
+    'Сливки',
+    'Молоко'
+
+  ],
+
+
+  '🥫 Соусы': [
 
     'Майонез',
     'Шрирача',
@@ -680,314 +850,75 @@ const buy = {
     'Васаби',
     'Маринованный имбирь',
     'Чука',
-    'Кунжутный соус'
+    'Кунжутный соус',
+    'Соус сырный к фри'
 
   ],
 
-  '🐟 Икра / топпинги': [
 
-    'Масаго',
-    'Тобико',
-    'Каперсы',
-    'Лук фри'
+  '🫗 Масла': [
 
-  ],
-
-  '🥬 Овощи и зелень': [
-
-    'Огурец',
-    'Помидор',
-    'Листовой салат / мароль',
-    'Авокадо',
-    'Лук',
-    'Чеснок'
+    'Масло фритюрное',
+    'Кунжутное масло'
 
   ],
 
-  '🧀 Молочные продукты': [
 
-    'Сливочный сыр',
-    'Чеддер',
-    'Моцарелла',
-    'Пармезан',
-    'Сливки',
-    'Молоко'
+  '🍔 Хлеб / выпечка': [
+
+    'Булочки для бургеров'
 
   ],
 
-  '🍔 Бургеры / горячее': [
 
-    'Булочки для бургеров',
-    'Куриное филе',
-    'Картофель фри',
+  '🥚 Яйца': [
+
     'Яйца'
-
-  ],
-
-  '🥣 Для новых блюд': [
-
-    'Тыква',
-    'Кокосовое молоко',
-    'Паприка',
-    'Лимон',
-    'Лайм'
 
   ]
 
 };
 
 
-/* =========================
-   STORAGE
-   ========================= */
+/* =====================================================
+   LOCAL STORAGE
+   ТОЛЬКО ДЛЯ ВРЕМЕННОГО СПИСКА ЗАКУПКИ
+   ===================================================== */
 
-const key = p =>
-  'llk_' + p;
+const buyKey =
+  item =>
+    'llk_buy_' + item;
 
 
-const get = p =>
-  localStorage.getItem(
-    key(p)
+function buyGet(item){
+
+  return localStorage.getItem(
+    buyKey(item)
   ) === '1';
 
+}
 
-const set = (p,v) =>
+
+function buySet(item,value){
+
   localStorage.setItem(
-    key(p),
-    v ? '1' : '0'
+    buyKey(item),
+    value ? '1' : '0'
   );
-
-
-/* =========================
-   ELEMENTS
-   ========================= */
-
-const prepList =
-  document.querySelector(
-    '#prepList'
-  );
-
-const buyList =
-  document.querySelector(
-    '#buyList'
-  );
-
-
-/* =========================
-   ROW
-   ========================= */
-
-function row(name,type){
-
-  const r =
-    document.createElement('div');
-
-  r.className =
-    'row' +
-    (
-      get(type + name)
-      ? ' checked'
-      : ''
-    );
-
-  r.innerHTML =
-    '<div class="box"></div>' +
-    '<div class="name"></div>';
-
-  r.querySelector(
-    '.name'
-  ).textContent = name;
-
-
-  r.onclick = () => {
-
-    const value =
-      !get(type + name);
-
-    set(
-      type + name,
-      value
-    );
-
-    r.classList.toggle(
-      'checked',
-      value
-    );
-
-    update();
-
-  };
-
-
-  return r;
 
 }
 
 
-/* =========================
-   RENDER
-   ========================= */
+/* =====================================================
+   ОБЩЕЕ СОСТОЯНИЕ ЗАГОТОВОК
+   ===================================================== */
 
-function render(){
-
-  prepList.innerHTML = '';
+let prepState = {};
 
 
-  prep.forEach(item => {
-
-    prepList.appendChild(
-      row(item,'p_')
-    );
-
-  });
-
-
-  buyList.innerHTML = '';
-
-
-  Object.entries(buy)
-    .forEach(
-      ([category,items]) => {
-
-        const section =
-          document.createElement(
-            'div'
-          );
-
-        section.className =
-          'section';
-
-
-        section.innerHTML =
-          '<div class="section-title"></div>' +
-          '<div class="list"></div>';
-
-
-        section
-          .querySelector(
-            '.section-title'
-          )
-          .textContent =
-          category;
-
-
-        items.forEach(item => {
-
-          section
-            .querySelector('.list')
-            .appendChild(
-              row(item,'b_')
-            );
-
-        });
-
-
-        buyList.appendChild(
-          section
-        );
-
-      }
-    );
-
-
-  const select =
-    document.querySelector(
-      '#staff'
-    );
-
-
-  select.innerHTML =
-    '<option value="">' +
-    'Кто отправляет?' +
-    '</option>';
-
-
-  staff.forEach(person => {
-
-    const option =
-      document.createElement(
-        'option'
-      );
-
-    option.value = person;
-    option.textContent = person;
-
-    select.appendChild(
-      option
-    );
-
-  });
-
-
-  update();
-
-}
-
-
-/* =========================
-   UPDATE
-   ========================= */
-
-function update(){
-
-  const prepCount =
-    prep.filter(
-      item => get('p_' + item)
-    ).length;
-
-
-  document.querySelector(
-    '#prepCount'
-  ).textContent =
-    prepCount + '/' + prep.length;
-
-
-  document.querySelector(
-    '#prepBar'
-  ).style.width =
-    (
-      prepCount /
-      prep.length *
-      100
-    ) + '%';
-
-
-  let buyCount = 0;
-
-
-  Object.values(buy)
-    .flat()
-    .forEach(item => {
-
-      if(
-        get('b_' + item)
-      ){
-        buyCount++;
-      }
-
-    });
-
-
-  document.querySelector(
-    '#buyCount'
-  ).textContent =
-    buyCount;
-
-
-  document.querySelector(
-    '#send'
-  ).disabled =
-    buyCount === 0 ||
-    !document.querySelector(
-      '#staff'
-    ).value;
-
-}
-
-
-/* =========================
+/* =====================================================
    TOAST
-   ========================= */
+   ===================================================== */
 
 function toast(message){
 
@@ -1015,180 +946,941 @@ function toast(message){
 }
 
 
-/* =========================
-   RESET
-   ========================= */
+/* =====================================================
+   JSONP — ПОЛУЧЕНИЕ СОСТОЯНИЯ
+   ===================================================== */
 
-function reset(prefix,items){
+function loadPrepState(){
 
-  items.forEach(item => {
+  const callbackName =
+    'llooLoad_' +
+    Date.now();
 
-    set(
-      prefix + item,
-      false
+
+  window[callbackName] =
+    function(data){
+
+      try {
+
+        if (
+          data &&
+          data.success
+        ) {
+
+          prepState =
+            data.prep || {};
+
+          renderPrep();
+
+          document.querySelector(
+            '#syncStatus'
+          ).textContent =
+            '✓ Синхронизировано';
+
+        }
+
+      } catch(error){
+
+        console.error(error);
+
+      }
+
+
+      delete window[callbackName];
+
+      const script =
+        document.getElementById(
+          callbackName
+        );
+
+      if(script){
+        script.remove();
+      }
+
+    };
+
+
+  const script =
+    document.createElement(
+      'script'
     );
 
-  });
+
+  script.id =
+    callbackName;
 
 
-  render();
+  script.src =
+    GOOGLE_SCRIPT_URL +
+    '?callback=' +
+    callbackName +
+    '&t=' +
+    Date.now();
+
+
+  script.onerror =
+    function(){
+
+      document.querySelector(
+        '#syncStatus'
+      ).textContent =
+        '⚠ Не удалось синхронизировать';
+
+      delete window[callbackName];
+
+      script.remove();
+
+    };
+
+
+  document
+    .body
+    .appendChild(script);
 
 }
 
 
-/* =========================
-   TABS
-   ========================= */
+/* =====================================================
+   ОТПРАВКА POST
+   ===================================================== */
 
-document
-  .querySelectorAll('.tab')
-  .forEach(button => {
+function sendToServer(data){
 
-    button.onclick = () => {
+  return fetch(
+    GOOGLE_SCRIPT_URL,
+    {
+      method:'POST',
 
-      document
-        .querySelectorAll('.tab')
-        .forEach(tab =>
-          tab.classList.remove(
-            'active'
+      mode:'no-cors',
+
+      headers:{
+        'Content-Type':
+          'text/plain;charset=utf-8'
+      },
+
+      body:
+        JSON.stringify(data)
+    }
+  );
+
+}
+
+
+/* =====================================================
+   ОТМЕТКА ЗАГОТОВКИ
+   ===================================================== */
+
+function togglePrep(item){
+
+  const staffName =
+    document.querySelector(
+      '#prepStaff'
+    ).value;
+
+
+  if(!staffName){
+
+    toast(
+      'Сначала выбери своё имя'
+    );
+
+    return;
+
+  }
+
+
+  const current =
+    prepState[item];
+
+
+  const checked =
+    !current;
+
+
+  if(checked){
+
+    prepState[item] = {
+
+      checked:true,
+
+      employee:
+        staffName,
+
+      time:
+        new Date()
+          .toLocaleTimeString(
+            'ru-RU',
+            {
+              hour:'2-digit',
+              minute:'2-digit'
+            }
           )
-        );
-
-
-      document
-        .querySelectorAll('.panel')
-        .forEach(panel =>
-          panel.classList.remove(
-            'active'
-          )
-        );
-
-
-      button.classList.add(
-        'active'
-      );
-
-
-      document
-        .querySelector(
-          '#' + button.dataset.tab
-        )
-        .classList.add(
-          'active'
-        );
 
     };
+
+  } else {
+
+    delete prepState[item];
+
+  }
+
+
+  renderPrep();
+
+
+  sendToServer({
+
+    action:
+      'prep_check',
+
+    employee:
+      staffName,
+
+    item:
+      item,
+
+    checked:
+      checked
 
   });
 
 
-/* =========================
-   RESET
-   ========================= */
+  document.querySelector(
+    '#syncStatus'
+  ).textContent =
+    'Сохраняем…';
 
-document
-  .querySelector('#resetPrep')
-  .onclick = () =>
-    reset(
-      'p_',
-      prep
+
+  setTimeout(
+    loadPrepState,
+    500
+  );
+
+}
+
+
+/* =====================================================
+   РЕНДЕР ЗАГОТОВОК
+   ===================================================== */
+
+function renderPrep(){
+
+  const list =
+    document.querySelector(
+      '#prepList'
     );
 
 
-document
-  .querySelector('#resetBuy')
-  .onclick = () =>
-    reset(
-      'b_',
-      Object.values(buy).flat()
+  list.innerHTML =
+    '';
+
+
+  prep.forEach(item => {
+
+    const info =
+      prepState[item];
+
+
+    const row =
+      document.createElement(
+        'div'
+      );
+
+
+    row.className =
+      'row' +
+      (
+        info
+          ? ' checked'
+          : ''
+      );
+
+
+    const box =
+      document.createElement(
+        'div'
+      );
+
+    box.className =
+      'box';
+
+
+    const name =
+      document.createElement(
+        'div'
+      );
+
+    name.className =
+      'name';
+
+    name.textContent =
+      item;
+
+
+    const meta =
+      document.createElement(
+        'div'
+      );
+
+    meta.className =
+      'prep-meta';
+
+
+    if(info){
+
+      meta.textContent =
+        info.employee +
+        '\n' +
+        info.time;
+
+    }
+
+
+    row.appendChild(
+      box
+    );
+
+    row.appendChild(
+      name
+    );
+
+    row.appendChild(
+      meta
     );
 
 
-/* =========================
-   STAFF
-   ========================= */
-
-document
-  .querySelector('#staff')
-  .onchange =
-  update;
+    row.onclick =
+      () =>
+        togglePrep(item);
 
 
-/* =========================
-   SEND TO TELEGRAM
-   ========================= */
-
-document.querySelector('#send').onclick = async () => {
-
-  const button = document.querySelector('#send');
-
-  const employee =
-    document.querySelector('#staff').value;
-
-  const items =
-    Object.values(buy)
-      .flat()
-      .filter(item => get('b_' + item));
-
-  if (!employee || items.length === 0) {
-    return;
-  }
-
-  button.disabled = true;
-  button.textContent = 'Отправляем…';
-
-  try {
-
-    await fetch(
-      GOOGLE_SCRIPT_URL,
-      {
-        method: 'POST',
-
-        mode: 'no-cors',
-
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8'
-        },
-
-        body: JSON.stringify({
-          employee: employee,
-          items: items
-        })
-      }
+    list.appendChild(
+      row
     );
 
-    toast('✓ Заявка отправлена');
+  });
 
-    items.forEach(item => {
-      set('b_' + item, false);
+
+  updatePrepSummary();
+
+}
+
+
+/* =====================================================
+   SUMMARY PREP
+   ===================================================== */
+
+function updatePrepSummary(){
+
+  const count =
+    prep.filter(
+      item =>
+        !!prepState[item]
+    ).length;
+
+
+  document.querySelector(
+    '#prepCount'
+  ).textContent =
+    count +
+    '/' +
+    prep.length;
+
+
+  document.querySelector(
+    '#prepBar'
+  ).style.width =
+    (
+      count /
+      prep.length *
+      100
+    ) +
+    '%';
+
+}
+
+
+/* =====================================================
+   REPORT PREP
+   ===================================================== */
+
+document
+  .querySelector(
+    '#prepReport'
+  )
+  .onclick =
+  function(){
+
+    const employee =
+      document.querySelector(
+        '#prepStaff'
+      ).value;
+
+
+    if(!employee){
+
+      toast(
+        'Выбери своё имя'
+      );
+
+      return;
+
+    }
+
+
+    const button =
+      this;
+
+
+    button.disabled =
+      true;
+
+    button.textContent =
+      'Отправляем…';
+
+
+    sendToServer({
+
+      action:
+        'prep_report',
+
+      employee:
+        employee
+
     });
 
-    render();
 
-  } catch (error) {
+    setTimeout(
+      function(){
 
-    console.error(error);
+        button.textContent =
+          '✓ Проверил заготовки';
 
-    toast('Ошибка отправки');
+        button.disabled =
+          false;
 
-  } finally {
+        toast(
+          '✓ Отчёт отправлен в Telegram'
+        );
+
+      },
+      700
+    );
+
+  };
+
+
+/* =====================================================
+   STAFF PREP
+   ===================================================== */
+
+document
+  .querySelector(
+    '#prepStaff'
+  )
+  .onchange =
+  function(){
+
+    document.querySelector(
+      '#prepReport'
+    ).disabled =
+      !this.value;
+
+  };
+
+
+/* =====================================================
+   RESET PREP
+   ===================================================== */
+
+document
+  .querySelector(
+    '#resetPrep'
+  )
+  .onclick =
+  function(){
+
+    const employee =
+      document.querySelector(
+        '#prepStaff'
+      ).value;
+
+
+    if(!employee){
+
+      toast(
+        'Выбери своё имя'
+      );
+
+      return;
+
+    }
+
+
+    if(
+      !confirm(
+        'Сбросить все заготовки на сегодня?'
+      )
+    ){
+
+      return;
+
+    }
+
+
+    prepState = {};
+
+    renderPrep();
+
+
+    sendToServer({
+
+      action:
+        'prep_reset',
+
+      employee:
+        employee
+
+    });
+
+
+    toast(
+      'Список заготовок сброшен'
+    );
+
+
+    setTimeout(
+      loadPrepState,
+      500
+    );
+
+  };
+
+
+/* =====================================================
+   BUY ROW
+   ===================================================== */
+
+function buyRow(item){
+
+  const row =
+    document.createElement(
+      'div'
+    );
+
+
+  row.className =
+    'row' +
+    (
+      buyGet(item)
+        ? ' checked'
+        : ''
+    );
+
+
+  row.innerHTML =
+    '<div class="box"></div>' +
+    '<div class="name"></div>';
+
+
+  row.querySelector(
+    '.name'
+  ).textContent =
+    item;
+
+
+  row.onclick =
+    function(){
+
+      const value =
+        !buyGet(item);
+
+
+      buySet(
+        item,
+        value
+      );
+
+
+      row.classList.toggle(
+        'checked',
+        value
+      );
+
+
+      updateBuy();
+
+    };
+
+
+  return row;
+
+}
+
+
+/* =====================================================
+   RENDER BUY
+   ===================================================== */
+
+function renderBuy(){
+
+  const container =
+    document.querySelector(
+      '#buyList'
+    );
+
+
+  container.innerHTML =
+    '';
+
+
+  Object.entries(
+    buy
+  ).forEach(
+    ([category,items]) => {
+
+      const section =
+        document.createElement(
+          'div'
+        );
+
+
+      section.className =
+        'section';
+
+
+      const title =
+        document.createElement(
+          'div'
+        );
+
+
+      title.className =
+        'section-title';
+
+
+      title.textContent =
+        category;
+
+
+      const list =
+        document.createElement(
+          'div'
+        );
+
+
+      list.className =
+        'list';
+
+
+      items.forEach(
+        item =>
+          list.appendChild(
+            buyRow(item)
+          )
+      );
+
+
+      section.appendChild(
+        title
+      );
+
+
+      section.appendChild(
+        list
+      );
+
+
+      container.appendChild(
+        section
+      );
+
+    }
+  );
+
+
+  updateBuy();
+
+}
+
+
+/* =====================================================
+   UPDATE BUY
+   ===================================================== */
+
+function updateBuy(){
+
+  const count =
+    Object.values(buy)
+      .flat()
+      .filter(
+        item =>
+          buyGet(item)
+      )
+      .length;
+
+
+  document.querySelector(
+    '#buyCount'
+  ).textContent =
+    count;
+
+
+  const staffName =
+    document.querySelector(
+      '#buyStaff'
+    ).value;
+
+
+  document.querySelector(
+    '#buySend'
+  ).disabled =
+    !staffName ||
+    count === 0;
+
+}
+
+
+/* =====================================================
+   BUY STAFF
+   ===================================================== */
+
+document
+  .querySelector(
+    '#buyStaff'
+  )
+  .onchange =
+  updateBuy;
+
+
+/* =====================================================
+   SEND BUY
+   ===================================================== */
+
+document
+  .querySelector(
+    '#buySend'
+  )
+  .onclick =
+  function(){
+
+    const employee =
+      document.querySelector(
+        '#buyStaff'
+      ).value;
+
+
+    const items =
+      Object.values(buy)
+        .flat()
+        .filter(
+          item =>
+            buyGet(item)
+        );
+
+
+    if(
+      !employee ||
+      !items.length
+    ){
+
+      return;
+
+    }
+
+
+    const button =
+      this;
+
+
+    button.disabled =
+      true;
+
+    button.textContent =
+      'Отправляем…';
+
+
+    sendToServer({
+
+      action:
+        'purchase',
+
+      employee:
+        employee,
+
+      items:
+        items
+
+    });
+
+
+    items.forEach(
+      item =>
+        buySet(
+          item,
+          false
+        )
+    );
+
+
+    renderBuy();
+
+
+    toast(
+      '✓ Закупка отправлена в Telegram'
+    );
+
 
     button.textContent =
       'Отправить закупку';
 
-    update();
-
-  }
-
-};
+  };
 
 
-/* =========================
-   DATE
-   ========================= */
+/* =====================================================
+   RESET BUY
+   ===================================================== */
 
 document
-  .querySelector('#date')
+  .querySelector(
+    '#resetBuy'
+  )
+  .onclick =
+  function(){
+
+    Object.values(buy)
+      .flat()
+      .forEach(
+        item =>
+          buySet(
+            item,
+            false
+          )
+      );
+
+
+    renderBuy();
+
+  };
+
+
+/* =====================================================
+   TABS
+   ===================================================== */
+
+document
+  .querySelectorAll(
+    '.tab'
+  )
+  .forEach(
+    button => {
+
+      button.onclick =
+        function(){
+
+          document
+            .querySelectorAll(
+              '.tab'
+            )
+            .forEach(
+              tab =>
+                tab.classList
+                  .remove(
+                    'active'
+                  )
+            );
+
+
+          document
+            .querySelectorAll(
+              '.panel'
+            )
+            .forEach(
+              panel =>
+                panel.classList
+                  .remove(
+                    'active'
+                  )
+            );
+
+
+          this.classList.add(
+            'active'
+          );
+
+
+          document
+            .querySelector(
+              '#' +
+              this.dataset.tab
+            )
+            .classList.add(
+              'active'
+            );
+
+        };
+
+    }
+  );
+
+
+/* =====================================================
+   STAFF OPTIONS
+   ===================================================== */
+
+function fillStaff(){
+
+  const selects = [
+
+    document.querySelector(
+      '#prepStaff'
+    ),
+
+    document.querySelector(
+      '#buyStaff'
+    )
+
+  ];
+
+
+  selects.forEach(
+    select => {
+
+      staff.forEach(
+        person => {
+
+          const option =
+            document.createElement(
+              'option'
+            );
+
+          option.value =
+            person;
+
+          option.textContent =
+            person;
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   DATE
+   ===================================================== */
+
+document
+  .querySelector(
+    '#date'
+  )
   .textContent =
   new Intl.DateTimeFormat(
     'ru-RU',
@@ -1203,11 +1895,32 @@ document
   );
 
 
-/* =========================
+/* =====================================================
    START
-   ========================= */
+   ===================================================== */
 
-render();
+fillStaff();
+
+renderPrep();
+
+renderBuy();
+
+loadPrepState();
+
+
+/*
+  Обновляем общий список каждые 10 секунд.
+
+  Поэтому если один сотрудник отметил
+  заготовку на своём телефоне,
+  остальные увидят изменение
+  максимум через несколько секунд.
+*/
+
+setInterval(
+  loadPrepState,
+  10000
+);
 
 </script>
 
