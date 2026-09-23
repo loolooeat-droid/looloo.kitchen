@@ -12,29 +12,42 @@
 
 <title>LooLoo Kitchen</title>
 
+
 <style>
 
 :root{
+
   --green:#17372f;
   --green2:#21483e;
+
   --cream:#f4f0e7;
   --paper:#fffdf8;
+
   --gold:#b69b61;
+
   --ink:#1b211e;
   --muted:#737973;
+
   --line:#e4dfd3;
-  --soft:#edf3ef;
-  --red:#a64b3d;
+
+  --success:#2e6b50;
+
 }
+
 
 *{
   box-sizing:border-box;
 }
 
+
 body{
+
   margin:0;
+
   background:var(--cream);
+
   color:var(--ink);
+
   font-family:
     Inter,
     system-ui,
@@ -42,83 +55,160 @@ body{
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+
 }
+
 
 button,
 select{
+
   font:inherit;
+
 }
+
 
 .app{
+
   max-width:760px;
+
   margin:auto;
+
   min-height:100vh;
-  padding:20px 16px 100px;
+
+  padding:
+    20px
+    16px
+    110px;
+
 }
+
+
+/* =========================
+   HEADER
+   ========================= */
 
 .top{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
-  margin-bottom:20px;
+
+  margin-bottom:22px;
+
 }
+
 
 .brand{
+
   display:flex;
+
   gap:12px;
+
   align-items:center;
+
 }
+
 
 .mark{
+
   width:42px;
   height:42px;
+
   border-radius:12px;
+
   background:var(--green);
-  color:#fff;
+
+  color:white;
+
   display:grid;
+
   place-items:center;
+
   font-weight:700;
+
   letter-spacing:.05em;
+
 }
+
 
 .eyebrow{
+
   text-transform:uppercase;
+
   font-size:10px;
+
   letter-spacing:.18em;
+
   color:var(--gold);
+
   font-weight:700;
+
 }
+
 
 .title{
+
   font-family:Georgia,serif;
+
   font-size:24px;
+
   margin:2px 0;
+
 }
+
 
 .date{
+
   font-size:12px;
+
   color:var(--muted);
+
 }
+
+
+/* =========================
+   HERO
+   ========================= */
 
 .hero{
+
   background:var(--green);
-  color:#fff;
+
+  color:white;
+
   border-radius:20px;
+
   padding:22px;
+
   margin-bottom:16px;
-  box-shadow:0 12px 30px #17372f1a;
+
+  box-shadow:
+    0 12px 30px #17372f1a;
+
 }
+
 
 .hero h1{
+
   font-family:Georgia,serif;
+
   font-size:28px;
+
   margin:0 0 7px;
+
 }
 
+
 .hero p{
+
   margin:0;
+
   color:#d8e0db;
+
   font-size:14px;
+
 }
 
 
@@ -126,59 +216,97 @@ select{
    START SCREEN
    ========================= */
 
-.start-screen{
-  display:none;
+.start{
+
+  display:block;
+
 }
 
-.start-screen.active{
-  display:block;
-}
 
 .start-title{
+
   font-family:Georgia,serif;
-  font-size:30px;
-  margin:25px 0 8px;
+
+  font-size:24px;
+
+  margin:
+    24px
+    0
+    14px;
+
 }
 
-.start-subtitle{
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.5;
-  margin-bottom:24px;
+
+.start-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:10px;
+
 }
 
-.choice{
-  width:100%;
+
+.start-card{
+
   border:1px solid var(--line);
+
   background:var(--paper);
+
   border-radius:18px;
+
   padding:20px;
-  margin-bottom:10px;
+
   text-align:left;
+
   cursor:pointer;
+
   transition:.15s;
+
 }
 
-.choice:hover{
+
+.start-card:hover{
+
   transform:translateY(-1px);
-  box-shadow:0 6px 20px #0000000b;
+
+  box-shadow:
+    0 8px 20px #0000000b;
+
 }
 
-.choice-icon{
-  font-size:26px;
+
+.start-icon{
+
+  font-size:28px;
+
   margin-bottom:10px;
+
 }
 
-.choice-title{
-  font-size:17px;
-  font-weight:800;
-  color:var(--green);
+
+.start-card strong{
+
+  display:block;
+
+  font-size:16px;
+
+  margin-bottom:5px;
+
 }
 
-.choice-text{
-  margin-top:4px;
+
+.start-card span{
+
   color:var(--muted);
-  font-size:13px;
+
+  font-size:12px;
+
+  line-height:1.4;
+
 }
 
 
@@ -187,225 +315,392 @@ select{
    ========================= */
 
 .employee-screen{
+
   display:none;
+
 }
 
-.employee-screen.active{
-  display:block;
+
+.employee-title{
+
+  font-family:Georgia,serif;
+
+  font-size:24px;
+
+  margin:
+    24px
+    0
+    14px;
+
 }
 
-.employee-card{
+
+.employee-list{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+
+  gap:8px;
+
+}
+
+
+.employee{
+
+  border:1px solid var(--line);
+
   background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:16px;
+
+  border-radius:14px;
+
+  padding:15px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+  text-align:left;
+
 }
 
-.employee-label{
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  color:var(--muted);
-  font-weight:800;
-  margin-bottom:8px;
+
+.employee:hover{
+
+  border-color:var(--gold);
+
 }
 
-.employee-select{
-  width:100%;
-  height:48px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:0 13px;
-  background:#fff;
-  color:var(--ink);
-}
 
 .back{
+
   border:0;
+
   background:transparent;
+
   color:var(--muted);
-  padding:0;
+
+  padding:5px 0;
+
   cursor:pointer;
-  margin-bottom:14px;
+
+  font-size:13px;
+
 }
 
 
 /* =========================
-   CONTENT
+   WORK SCREEN
    ========================= */
 
-.content{
+.work{
+
   display:none;
+
 }
 
-.content.active{
-  display:block;
+
+.work-head{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  margin-bottom:14px;
+
 }
 
-.mode-title{
+
+.work-title{
+
   font-family:Georgia,serif;
-  font-size:27px;
-  margin:10px 0 4px;
+
+  font-size:24px;
+
 }
 
-.mode-subtitle{
+
+.current-user{
+
+  font-size:12px;
+
   color:var(--muted);
-  font-size:13px;
-  margin-bottom:18px;
+
+  margin-top:3px;
+
 }
+
+
+.change{
+
+  border:1px solid var(--line);
+
+  background:var(--paper);
+
+  border-radius:10px;
+
+  padding:8px 10px;
+
+  cursor:pointer;
+
+  font-size:12px;
+
+}
+
+
+/* =========================
+   SUMMARY
+   ========================= */
 
 .summary{
+
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
+
   background:var(--paper);
+
   border:1px solid var(--line);
+
   border-radius:16px;
+
   padding:14px 16px;
+
   margin-bottom:12px;
+
 }
+
 
 .summary strong{
+
   font-size:20px;
+
 }
+
 
 .summary span{
+
   font-size:12px;
+
   color:var(--muted);
-}
 
-.section{
-  margin:14px 0;
-}
-
-.section-title{
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  color:var(--muted);
-  font-weight:800;
-  margin:18px 4px 8px;
-}
-
-.list{
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:16px;
-  overflow:hidden;
-}
-
-.row{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:14px 15px;
-  border-bottom:1px solid var(--line);
-  cursor:pointer;
-  transition:.15s;
-}
-
-.row:last-child{
-  border-bottom:0;
-}
-
-.row:hover{
-  background:#faf7f0;
-}
-
-.row.checked{
-  background:var(--soft);
-}
-
-.box{
-  width:23px;
-  height:23px;
-  border:1.5px solid #bcb8ad;
-  border-radius:7px;
-  flex:0 0 23px;
-  display:grid;
-  place-items:center;
-  background:#fff;
-}
-
-.row.checked .box{
-  background:var(--green);
-  border-color:var(--green);
-  color:#fff;
-}
-
-.box::after{
-  content:'✓';
-  font-size:14px;
-  opacity:0;
-}
-
-.row.checked .box::after{
-  opacity:1;
-}
-
-.name{
-  font-size:14px;
-}
-
-.row.checked .name{
-  color:#59615c;
-}
-
-.check-info{
-  margin-left:auto;
-  font-size:10px;
-  color:#89908b;
 }
 
 
 /* =========================
-   PURCHASE
+   PROGRESS
    ========================= */
 
-.purchase-filter{
-  display:flex;
-  gap:8px;
-  overflow:auto;
-  padding-bottom:4px;
-  margin-bottom:12px;
+.progress{
+
+  height:8px;
+
+  background:#e5e1d7;
+
+  border-radius:10px;
+
+  overflow:hidden;
+
+  margin:
+    0
+    0
+    16px;
+
 }
 
-.filter-btn{
-  flex:0 0 auto;
-  border:1px solid var(--line);
-  background:var(--paper);
-  border-radius:11px;
-  padding:9px 12px;
-  color:var(--muted);
-  cursor:pointer;
-  font-size:12px;
-  font-weight:700;
-}
 
-.filter-btn.active{
+.progress i{
+
+  display:block;
+
+  height:100%;
+
+  width:0;
+
   background:var(--green);
-  color:#fff;
-  border-color:var(--green);
+
+  transition:.2s;
+
 }
 
-.purchase-category{
-  margin-bottom:18px;
+
+/* =========================
+   SECTION
+   ========================= */
+
+.section{
+
+  margin:14px 0;
+
 }
 
-.purchase-category-title{
+
+.section-title{
+
   font-size:12px;
+
   text-transform:uppercase;
-  letter-spacing:.11em;
-  font-weight:800;
+
+  letter-spacing:.12em;
+
   color:var(--muted);
-  margin:18px 4px 8px;
+
+  font-weight:800;
+
+  margin:
+    18px
+    4px
+    8px;
+
 }
 
-.min{
-  font-size:10px;
-  color:var(--gold);
-  margin-left:auto;
+
+.list{
+
+  background:var(--paper);
+
+  border:1px solid var(--line);
+
+  border-radius:16px;
+
+  overflow:hidden;
+
+}
+
+
+/* =========================
+   ROW
+   ========================= */
+
+.row{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:13px 15px;
+
+  border-bottom:1px solid var(--line);
+
+  cursor:pointer;
+
+  transition:.12s;
+
+}
+
+
+.row:last-child{
+
+  border-bottom:0;
+
+}
+
+
+.row:hover{
+
+  background:#faf7f0;
+
+}
+
+
+.row.checked{
+
+  background:#edf3ef;
+
+}
+
+
+.box{
+
+  width:23px;
+  height:23px;
+
+  border:1.5px solid #bcb8ad;
+
+  border-radius:7px;
+
+  flex:0 0 23px;
+
+  display:grid;
+
+  place-items:center;
+
+  background:white;
+
+}
+
+
+.box::after{
+
+  content:'✓';
+
+  font-size:14px;
+
+  opacity:0;
+
+}
+
+
+.row.checked .box{
+
+  background:var(--green);
+
+  border-color:var(--green);
+
+  color:white;
+
+}
+
+
+.row.checked .box::after{
+
+  opacity:1;
+
+}
+
+
+.name{
+
+  font-size:14px;
+
+}
+
+
+.row.checked .name{
+
+  color:var(--green);
+
+  font-weight:600;
+
+}
+
+
+/* =========================
+   NOTE
+   ========================= */
+
+.note{
+
+  font-size:12px;
+
+  color:var(--muted);
+
+  line-height:1.5;
+
+  margin:
+    10px
+    4px;
+
 }
 
 
@@ -414,51 +709,111 @@ select{
    ========================= */
 
 .bottom{
+
+  display:none;
+
   position:fixed;
+
   left:0;
   right:0;
   bottom:0;
+
   background:#ffffffeb;
+
   backdrop-filter:blur(12px);
+
   border-top:1px solid var(--line);
-  padding:10px 16px;
-  z-index:20;
+
+  padding:
+    10px
+    16px;
+
+  z-index:5;
+
 }
+
 
 .bottom-inner{
+
   max-width:728px;
+
   margin:auto;
-  display:flex;
-  gap:8px;
+
 }
+
 
 .send{
-  height:48px;
+
+  width:100%;
+
+  height:50px;
+
   border-radius:13px;
+
   border:0;
+
   background:var(--green);
-  color:#fff;
+
+  color:white;
+
   font-weight:800;
-  padding:0 18px;
+
   cursor:pointer;
-  flex:1;
+
 }
+
 
 .send:disabled{
+
   opacity:.4;
+
   cursor:not-allowed;
+
 }
 
-.bottom-name{
-  display:flex;
-  align-items:center;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:0 14px;
-  color:var(--green);
-  font-size:13px;
-  font-weight:700;
+
+/* =========================
+   LOADING
+   ========================= */
+
+.sync{
+
+  position:fixed;
+
+  top:12px;
+
+  left:50%;
+
+  transform:
+    translateX(-50%);
+
+  background:var(--green);
+
+  color:white;
+
+  padding:
+    7px
+    12px;
+
+  border-radius:20px;
+
+  font-size:11px;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.2s;
+
+  z-index:20;
+
+}
+
+
+.sync.show{
+
+  opacity:1;
+
 }
 
 
@@ -467,42 +822,52 @@ select{
    ========================= */
 
 .toast{
+
   position:fixed;
+
   left:50%;
-  bottom:78px;
+
+  bottom:76px;
+
   transform:
     translateX(-50%)
     translateY(15px);
+
   background:var(--green);
-  color:#fff;
-  padding:12px 16px;
+
+  color:white;
+
+  padding:
+    12px
+    16px;
+
   border-radius:12px;
+
   font-size:13px;
+
   opacity:0;
+
   pointer-events:none;
+
   transition:.25s;
-  z-index:50;
+
+  z-index:30;
+
   max-width:90%;
+
   text-align:center;
+
 }
 
+
 .toast.show{
+
   opacity:1;
+
   transform:
     translateX(-50%)
     translateY(0);
-}
 
-
-/* =========================
-   LOADING
-   ========================= */
-
-.loading{
-  text-align:center;
-  color:var(--muted);
-  padding:35px 10px;
-  font-size:13px;
 }
 
 
@@ -513,27 +878,31 @@ select{
 @media(max-width:520px){
 
   .app{
-    padding:16px 12px 92px;
+
+    padding:
+      16px
+      12px
+      110px;
+
   }
 
   .hero{
+
     padding:19px;
+
   }
 
   .hero h1{
+
     font-size:25px;
+
   }
 
-  .start-title{
-    font-size:27px;
-  }
+  .start-grid,
+  .employee-list{
 
-  .bottom-inner{
-    gap:6px;
-  }
+    grid-template-columns:1fr;
 
-  .send{
-    padding:0 13px;
   }
 
 }
@@ -544,6 +913,7 @@ select{
 
 
 <body>
+
 
 <div class="app">
 
@@ -570,6 +940,7 @@ select{
 
   </div>
 
+
   <div
     class="date"
     id="date"
@@ -578,77 +949,77 @@ select{
 </header>
 
 
+<section class="hero">
+
+  <h1>
+    Кухня под контролем.
+  </h1>
+
+  <p>
+    Заготовки и закупка без лишних списков.
+  </p>
+
+</section>
+
+
 <!-- =========================
      START
      ========================= -->
 
 <section
-  id="startScreen"
-  class="start-screen active"
+  class="start"
+  id="start"
 >
 
-  <section class="hero">
-
-    <h1>
-      Кухня под контролем.
-    </h1>
-
-    <p>
-      Выбери, что нужно сделать сегодня.
-    </p>
-
-  </section>
-
-
   <div class="start-title">
-    Зачем ты здесь?
-  </div>
-
-  <div class="start-subtitle">
-    Сначала выбери действие, затем своё имя.
+    Зачем вы зашли?
   </div>
 
 
-  <button
-    class="choice"
-    onclick="chooseMode('prep')"
-  >
+  <div class="start-grid">
 
-    <div class="choice-icon">
-      🥣
-    </div>
+    <button
+      class="start-card"
+      data-purpose="prep"
+    >
 
-    <div class="choice-title">
-      Проверить заготовки
-    </div>
+      <div class="start-icon">
+        🥣
+      </div>
 
-    <div class="choice-text">
-      Посмотреть остатки и отметить то,
-      что уже готово.
-    </div>
+      <strong>
+        Проверить заготовки
+      </strong>
 
-  </button>
+      <span>
+        Отметить готовые заготовки
+        и отправить проверку.
+      </span>
+
+    </button>
 
 
-  <button
-    class="choice"
-    onclick="chooseMode('purchase')"
-  >
+    <button
+      class="start-card"
+      data-purpose="buy"
+    >
 
-    <div class="choice-icon">
-      🛒
-    </div>
+      <div class="start-icon">
+        🛒
+      </div>
 
-    <div class="choice-title">
-      Отправить закупку
-    </div>
+      <strong>
+        Отправить закупку
+      </strong>
 
-    <div class="choice-text">
-      Выбрать необходимые позиции
-      и отправить заявку.
-    </div>
+      <span>
+        Выбрать необходимые позиции
+        и отправить заявку.
+      </span>
 
-  </button>
+    </button>
+
+  </div>
 
 </section>
 
@@ -658,56 +1029,64 @@ select{
      ========================= -->
 
 <section
-  id="employeeScreen"
   class="employee-screen"
+  id="employeeScreen"
 >
 
   <button
     class="back"
-    onclick="backToStart()"
+    id="backPurpose"
   >
     ← Назад
   </button>
 
 
-  <div class="employee-card">
-
-    <div class="employee-label">
-      Сотрудник
-    </div>
-
-    <select
-      id="employeeSelect"
-      class="employee-select"
-    >
-
-      <option value="">
-        Выберите сотрудника
-      </option>
-
-    </select>
-
+  <div class="employee-title">
+    Кто вы?
   </div>
+
+
+  <div
+    class="employee-list"
+    id="employeeList"
+  ></div>
 
 </section>
 
 
 <!-- =========================
-     PREP
+     WORK
      ========================= -->
 
 <section
-  id="prepContent"
-  class="content"
+  class="work"
+  id="work"
 >
 
-  <div class="mode-title">
-    Заготовки
-  </div>
+  <div class="work-head">
 
-  <div class="mode-subtitle">
-    Отмечай только то, что действительно готово.
-    Галочки видны всем сотрудникам.
+    <div>
+
+      <div
+        class="work-title"
+        id="workTitle"
+      ></div>
+
+      <div
+        class="current-user"
+        id="currentUser"
+      ></div>
+
+    </div>
+
+
+    <button
+      class="change"
+      id="changeUser"
+    >
+      Сменить
+    </button>
+
   </div>
 
 
@@ -715,61 +1094,37 @@ select{
 
     <div>
 
-      <strong id="prepCount">
+      <strong id="count">
         0
       </strong>
 
       <div class="date">
-        готово
+        отмечено
       </div>
 
     </div>
 
-    <div id="prepEmployee">
-    </div>
-
-  </div>
-
-
-  <div id="prepList">
-    <div class="loading">
-      Загружаем заготовки…
-    </div>
-  </div>
-
-</section>
-
-
-<!-- =========================
-     PURCHASE
-     ========================= -->
-
-<section
-  id="purchaseContent"
-  class="content"
->
-
-  <div class="mode-title">
-    Закупка
-  </div>
-
-  <div class="mode-subtitle">
-    Выбери позиции, которые нужно заказать.
   </div>
 
 
   <div
-    id="purchaseFilter"
-    class="purchase-filter"
-  ></div>
-
-
-  <div
-    id="purchaseList"
+    class="progress"
+    id="progressWrap"
   >
-    <div class="loading">
-      Загружаем закупку…
-    </div>
+
+    <i id="progressBar"></i>
+
+  </div>
+
+
+  <div id="content"></div>
+
+
+  <div class="note">
+
+    Отмеченные позиции сохраняются.
+    Следующий сотрудник увидит актуальное состояние.
+
   </div>
 
 </section>
@@ -783,25 +1138,17 @@ select{
      ========================= -->
 
 <div
-  id="bottom"
   class="bottom"
-  style="display:none"
+  id="bottom"
 >
 
   <div class="bottom-inner">
 
-    <div
-      id="bottomName"
-      class="bottom-name"
-    ></div>
-
     <button
-      id="send"
       class="send"
-      disabled
-      onclick="sendPurchase()"
+      id="send"
     >
-      Отправить закупку
+      Отправить
     </button>
 
   </div>
@@ -810,588 +1157,566 @@ select{
 
 
 <div
-  id="toast"
+  class="sync"
+  id="sync"
+>
+  Синхронизация
+</div>
+
+
+<div
   class="toast"
+  id="toast"
 ></div>
 
 
 <script>
 
 
-/* =========================================================
+/* =====================================================
    GOOGLE APPS SCRIPT
-   ========================================================= */
+   ===================================================== */
 
 const GOOGLE_SCRIPT_URL =
 'https://script.google.com/macros/s/AKfycbwh1dk0pA5WHj-0uw2kRhivOI0PoVXLiA7DzCA_r6xxXN5Tc6rCtgdE5PnoNHFW14YyDQ/exec';
 
 
-/* =========================================================
-   СОТРУДНИКИ
-   ========================================================= */
+/* =====================================================
+   EMPLOYEES
+   ===================================================== */
 
 const employees = {
 
-  kitchen: [
-    'Абраам',
-    'Аркадий',
-    'Арзуман',
-    'Карина',
-    'Айк'
-  ],
-
   prep: [
-    'Нинель',
-    'Марине'
+
+    {
+      name:'Нинель',
+      role:'prep'
+    },
+
+    {
+      name:'Марине',
+      role:'prep'
+    },
+
+    {
+      name:'Эмма',
+      role:'admin'
+    },
+
+    {
+      name:'Сушисты',
+      role:'sushi'
+    }
+
   ],
 
-  bar: [
-    'Арман',
-    'Эдгар'
-  ],
+  buy: [
 
-  admin: [
-    'Эмма'
+    {
+      name:'Нинель',
+      role:'kitchen'
+    },
+
+    {
+      name:'Марине',
+      role:'kitchen'
+    },
+
+    {
+      name:'Арман',
+      role:'bar'
+    },
+
+    {
+      name:'Эдгар',
+      role:'bar'
+    },
+
+    {
+      name:'Эмма',
+      role:'admin'
+    },
+
+    {
+      name:'Сушисты',
+      role:'sushi'
+    }
+
   ]
 
 };
 
 
-/* =========================================================
-   ЗАГОТОВКИ
-   ========================================================= */
+/* =====================================================
+   PREPARATIONS
+   ===================================================== */
+
+const prepLists = {
 
 
-/*
-   НИНЕЛЬ / МАРИНЕ
-*/
+  prep: [
 
-const prepPrepTeam = [
+    {
+      name:'Мароль',
+      group:'Заготовки'
+    },
 
+    {
+      name:'Курица маринованная',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Свекла запеченная',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Картофель бейби запеченный',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Сулугуни в сливках',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Тунец',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Креветки отварные',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Зеленое масло',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Песто',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Бульон рыбный',
+      note:'мин. остаток 10 шт',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Том Ям Кай',
+      note:'мин. остаток 7 шт',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Том Ям',
+      note:'мин. остаток 12 шт',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Креветки очищенные',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Мидии очищенные',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Халапеньо нарезанный',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Корн-доги на шпажках',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Соус Цезарь',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Яйцо отварное',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Тыквенный крем-суп',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Мисо бульон куриный',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Лапша отварная',
+      group:'Заготовки'
+    }
+
+  ],
+
+
+  admin: [
+
+    {
+      name:'Васаби',
+      group:'Контейнеры'
+    },
+
+    {
+      name:'Имбирь',
+      group:'Контейнеры'
+    },
+
+    {
+      name:'Соя в бутылке',
+      group:'Контейнеры'
+    },
+
+    {
+      name:'Коробки большие',
+      note:'собираются в стопку',
+      group:'Упаковка'
+    },
+
+    {
+      name:'Коробки малые',
+      note:'собираются в стопку',
+      group:'Упаковка'
+    }
+
+  ],
+
+
+  sushi: [
+
+    {
+      name:'Рис',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Спайси соус',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Сырный соус',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Огурец — нарезка',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Яки соус',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Рыбная нарезка — Филадельфия',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Рыбная нарезка — внутрянка',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Угорь — нарезка',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Чука салат',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Креветки темпура',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Краб микс с сыром',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Сухари Цезарь',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Мицукан',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Соевый соус — заготовка',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Кунжут жаренный',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Соус Лава',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Сыр сливочный в рукаве',
+      group:'Заготовки'
+    },
+
+    {
+      name:'Тунец',
+      group:'Контроль вместе с заготовщиками'
+    },
+
+    {
+      name:'Креветки отварные',
+      group:'Контроль вместе с заготовщиками'
+    }
+
+  ]
+
+};
+
+
+/* =====================================================
+   BUY LISTS
+   ===================================================== */
+
+
+/* Нинель + Марине */
+
+const kitchenBuy = [
+
+  'Соль',
+  'Сахар',
+  'Мука обычная',
+  'Хлеб тостовый для гренок Цезарь',
+  'Лапша яичная для рамена',
+  'Лайм',
+  'Каперсы',
+  'Креветки 16/20',
+  'Креветки 21/25',
+  'Креветки коктейльные',
+  'Стрипсы',
+  'Наггетсы',
+  'Сырные палочки',
+  'Картофель фри',
+  'Кольца кальмаров',
+  'Микс морепродуктов',
+  'Мидии на одной створке',
+  'Мидии на двух створках',
+  'Мидии без ракушки',
+  'Помидор',
   'Мароль',
-
-  'Курица маринованная',
-
-  'Свекла запеченная',
-
-  'Картофель бейби запеченный',
-
-  'Сулугуни в сливках',
-
-  'Тунец',
-
-  'Креветки отварные',
-
-  'Зеленое масло',
-
-  'Песто',
-
-  'Бульон рыбный',
-
-  'Том Ям Кай',
-
-  'Том Ям',
-
-  'Креветки очищенные',
-
-  'Мидии очищенные',
-
-  'Халапеньо нарезанный',
-
-  'Корн доги на шпажках',
-
-  'Соус Цезарь',
-
-  'Яйцо отварное',
-
-  'Тыквенный крем-суп',
-
-  'Мисо бульон',
-
-  'Лапша отварная'
-
-];
-
-
-/*
-   ЗАГОТОВКИ СУШИСТОВ
-*/
-
-const prepSushi = [
-
-  'Рис',
-
-  'Спайси соус',
-
-  'Сырный соус',
-
-  'Огурец — нарезка',
-
-  'Яки соус',
-
-  'Рыбная нарезка — Филадельфия',
-
-  'Рыбная нарезка — внутрянка',
-
-  'Угорь — нарезка',
-
-  'Чука салат',
-
-  'Васаби',
-
-  'Имбирь',
-
-  'Мицукан',
-
-  'Соевый соус',
-
-  'Кунжут жареный',
-
-  'Краб микс с сыром',
-
-  'Сухари Цезарь',
-
-  'Креветки темпура',
-
-  'Курица су-вид',
-
-  'Тунец',
-
-  'Креветки отварные'
-
-];
-
-
-/*
-   БАР
-*/
-
-const prepBar = [
-
-  'Кофе',
-
+  'Лук',
+  'Чеснок',
+  'Шампиньоны',
+  'Кинза',
+  'Тыква',
+  'Моцарелла',
+  'Чеддер',
   'Молоко',
+  'Сливки',
+  'Шрирача',
+  'Терияки',
+  'Рыбный соус',
+  'Чука',
+  'Кунжутный соус',
+  'Сырный соус к фри',
+  'Масло подсолнечное',
+  'Масло фритюрное',
+  'Булочки для бургеров',
+  'Яйцо',
+  'Брокколи',
+  'Свекла',
+  'Мука темпурная',
+  'Соус сырный к фри',
+  'Тунец филе'
+];
 
-  'Чай',
+
+/* То, что относится также к сушистам */
+
+const sushiSharedBuy = [
 
   'Сахар',
+  'Каперсы',
+  'Чеддер',
+  'Шрирача'
 
-  'Мята',
+];
 
-  'Тархун',
 
-  'Барбарис',
+/* Остальные закупки сушистов */
 
+const sushiBuy = [
+
+  'Рис для суши',
+  'Рисовый уксус',
+  'Нори',
+  'Панко',
+  'Кунжут белый',
+  'Кунжут чёрный',
+  'Мука темпурная',
+  'Майонез',
+  'Соевый соус',
+  'Унаги',
+  'Рыбный соус',
+  'Мирин',
+  'Васаби',
+  'Маринованный имбирь',
+  'Кунжутное масло',
+  'Кунжутный соус',
+  'Тобико',
+  'Масаго',
+  'Лук фри',
+  'Авокадо',
+  'Огурец',
+  'Сливочный сыр',
+  'Лосось',
+  'Угорь',
+  'Крабовое мясо',
+  'Кальмар',
+  'Мидии',
+  'Микс морепродуктов',
+  'Креветки 16/20',
+  'Креветки 21/25',
+  'Креветки коктейльные',
+  'Креветки для нового вида роллов',
+  'Масло растительное',
   'Лимон',
-
   'Лайм',
+  'Пармезан',
+  'Моцарелла',
+  'Сыр сливочный в рукаве',
+  'Соус Лава',
+  'Халапеньо',
+  'Песто',
+  'Краб микс',
+  'Мука обычная',
+  'Сырные палочки',
+  'Лапша яичная для рамена',
+  'Лист лайма'
 
+];
+
+
+/* Бар */
+
+const barBuy = [
+
+  'Кофе',
+  'Молоко',
+  'Чай',
+  'Сахар',
+  'Мята',
+  'Тархун',
+  'Барбарис',
+  'Лимон',
+  'Лайм',
+  'Кола / Фанта / Спрайт',
   'Вода газированная',
-
   'Вода без газа'
 
 ];
 
 
-/*
-   ЭММА
-*/
+/* Эмма */
 
-const prepAdmin = [
+const adminBuy = [
 
-  'Васаби — контейнер',
+  'Соусники большие',
+  'Соусники малые',
 
-  'Имбирь — контейнер',
+  'Супницы большие',
+  'Супницы малые',
 
-  'Соя — бутылка',
+  'Салатники большие',
+  'Салатники малые',
 
-  'Коробки большие — стопка',
+  'Пакеты для доставки — бумажные',
+  'Пакеты для доставки — прозрачные',
 
-  'Коробки малые — стопка'
+  'Палочки для суши',
+
+  'Салфетки для доставки',
+  'Салфетки в зал'
 
 ];
 
 
-/* =========================================================
-   ЗАКУПКА
-   ========================================================= */
+/* =====================================================
+   STATE
+   ===================================================== */
 
+let purpose = '';
 
-/*
-   КУХНЯ — НИНЕЛЬ / МАРИНЕ
-   + позиции, которые также нужны сушистам
-*/
+let employee = null;
 
-const purchaseKitchen = {
+let prepState = {};
 
-  'Бакалея': [
+let selectedBuy = new Set();
 
-    'Соль',
 
-    'Сахар',
+/* =====================================================
+   ELEMENTS
+   ===================================================== */
 
-    'Мука обычная',
+const start =
+  document.querySelector('#start');
 
-    'Мука темпурная',
+const employeeScreen =
+  document.querySelector('#employeeScreen');
 
-    'Масло подсолнечное'
+const employeeList =
+  document.querySelector('#employeeList');
 
-  ],
+const work =
+  document.querySelector('#work');
 
+const bottom =
+  document.querySelector('#bottom');
 
-  'Хлеб / заморозка': [
+const content =
+  document.querySelector('#content');
 
-    'Хлеб тостовый для гренок Цезарь',
+const sendButton =
+  document.querySelector('#send');
 
-    'Лапша яичная для рамена',
+const toastEl =
+  document.querySelector('#toast');
 
-    'Стрипсы',
+const syncEl =
+  document.querySelector('#sync');
 
-    'Наггетсы',
 
-    'Палочки сырные',
-
-    'Картофель фри',
-
-    'Кольца кальмаров',
-
-    'Микс морепродуктов',
-
-    'Сырные палочки'
-
-  ],
-
-
-  'Овощи и зелень': [
-
-    'Помидор',
-
-    'Мароль',
-
-    'Лук',
-
-    'Чеснок',
-
-    'Шампиньоны',
-
-    'Кинза',
-
-    'Тыква',
-
-    'Лайм',
-
-    'Брокколи',
-
-    'Свекла'
-
-  ],
-
-
-  'Молочные продукты': [
-
-    'Моцарелла',
-
-    'Чеддер',
-
-    'Молоко',
-
-    'Сливки'
-
-  ],
-
-
-  'Соусы': [
-
-    'Шрирача',
-
-    'Терияки',
-
-    'Рыбный соус',
-
-    'Чука',
-
-    'Кунжутный соус',
-
-    'Сырный соус к фри',
-
-    'Соевый соус'
-
-  ],
-
-
-  'Мясо / птица': [
-
-    'Булочки для бургеров',
-
-    'Куриные стрипсы',
-
-    'Наггетсы'
-
-  ],
-
-
-  'Морепродукты': [
-
-    'Креветки 16/20',
-
-    'Креветки 21/25',
-
-    'Креветки коктейльные',
-
-    'Мидии на одной створке',
-
-    'Мидии на двух створках',
-
-    'Мидии без ракушки'
-
-  ],
-
-
-  'Прочее': [
-
-    'Яйцо',
-
-    'Каперсы'
-
-  ]
-
-};
-
-
-/*
-   СУШИСТЫ
-   Всё, что не относится к кухонной закупке,
-   плюс позиции, которые пользователь отметил
-   как общие.
-*/
-
-const purchaseSushi = {
-
-  'Рис / бакалея': [
-
-    'Рис для суши',
-
-    'Рисовый уксус',
-
-    'Нори',
-
-    'Панко',
-
-    'Кунжут белый',
-
-    'Кунжут черный',
-
-    'Сахар',
-
-    'Соль',
-
-    'Кукурузный крахмал'
-
-  ],
-
-
-  'Рыба и морепродукты': [
-
-    'Лосось',
-
-    'Тунец филе',
-
-    'Угорь',
-
-    'Крабовое мясо',
-
-    'Креветки 16/20',
-
-    'Креветки 21/25',
-
-    'Креветки коктейльные',
-
-    'Мидии на одной створке',
-
-    'Мидии на двух створках',
-
-    'Мидии без ракушки',
-
-    'Кальмар'
-
-  ],
-
-
-  'Соусы': [
-
-    'Майонез',
-
-    'Шрирача',
-
-    'Соевый соус',
-
-    'Унаги',
-
-    'Терияки',
-
-    'Sweet Chili',
-
-    'Рыбный соус',
-
-    'Мирин',
-
-    'Васаби',
-
-    'Маринованный имбирь',
-
-    'Чука',
-
-    'Кунжутный соус'
-
-  ],
-
-
-  'Икра / топпинги': [
-
-    'Масаго',
-
-    'Тобико',
-
-    'Каперсы',
-
-    'Лук фри'
-
-  ],
-
-
-  'Овощи': [
-
-    'Огурец',
-
-    'Помидор',
-
-    'Авокадо',
-
-    'Лук',
-
-    'Чеснок',
-
-    'Лайм'
-
-  ],
-
-
-  'Молочные продукты': [
-
-    'Сливочный сыр',
-
-    'Чеддер',
-
-    'Моцарелла',
-
-    'Сливки'
-
-  ],
-
-
-  'Прочее': [
-
-    'Мука темпурная',
-
-    'Масло растительное'
-
-  ]
-
-};
-
-
-/*
-   БАР
-*/
-
-const purchaseBar = {
-
-  'Бар': [
-
-    'Кофе',
-
-    'Молоко',
-
-    'Чай',
-
-    'Сахар',
-
-    'Мята',
-
-    'Тархун',
-
-    'Барбарис',
-
-    'Лимон',
-
-    'Лайм',
-
-    'Вода газированная',
-
-    'Вода без газа'
-
-  ]
-
-};
-
-
-/*
-   ЭММА
-*/
-
-const purchaseAdmin = {
-
-  'Упаковка': [
-
-    'Соусники большие',
-
-    'Соусники малые',
-
-    'Супницы большие',
-
-    'Супницы малые',
-
-    'Салатники большие',
-
-    'Салатники малые',
-
-    'Пакеты для доставки бумажные',
-
-    'Пакеты для доставки прозрачные',
-
-    'Палочки для суши',
-
-    'Салфетки для доставки',
-
-    'Салфетки в зал'
-
-  ]
-
-};
-
-
-/* =========================================================
-   ОБЩИЕ
-   ========================================================= */
-
-let mode = '';
-
-let employee = '';
-
-let state = {
-
-  prep: {}
-
-};
-
-let purchaseSelected = {};
-
-let purchaseData = {};
-
-
-/* =========================================================
+/* =====================================================
    DATE
-   ========================================================= */
+   ===================================================== */
 
 document.querySelector('#date')
   .textContent =
@@ -1405,171 +1730,410 @@ document.querySelector('#date')
   ).format(new Date());
 
 
-/* =========================================================
-   START
-   ========================================================= */
+/* =====================================================
+   START PURPOSE
+   ===================================================== */
 
-function chooseMode(selectedMode){
+document
+  .querySelectorAll('.start-card')
+  .forEach(button => {
 
-  mode = selectedMode;
+    button.onclick = () => {
 
-  document
-    .querySelector('#startScreen')
-    .classList.remove('active');
+      purpose =
+        button.dataset.purpose;
 
-  document
-    .querySelector('#employeeScreen')
-    .classList.add('active');
+      showEmployees();
 
-  fillEmployees();
-
-}
-
-
-/* =========================================================
-   EMPLOYEES
-   ========================================================= */
-
-function fillEmployees(){
-
-  const select =
-    document.querySelector('#employeeSelect');
-
-  select.innerHTML =
-    '<option value="">Выберите сотрудника</option>';
-
-  let list = [];
-
-  if(mode === 'prep'){
-
-    list = [
-      ...employees.prep,
-      ...employees.kitchen,
-      ...employees.bar,
-      ...employees.admin
-    ];
-
-  }
-
-  if(mode === 'purchase'){
-
-    list = [
-      ...employees.prep,
-      ...employees.kitchen,
-      ...employees.bar,
-      ...employees.admin
-    ];
-
-  }
-
-  list.forEach(name => {
-
-    const option =
-      document.createElement('option');
-
-    option.value = name;
-    option.textContent = name;
-
-    select.appendChild(option);
+    };
 
   });
 
-  select.onchange = employeeChanged;
+
+/* =====================================================
+   EMPLOYEES
+   ===================================================== */
+
+function showEmployees(){
+
+  start.style.display='none';
+
+  employeeScreen.style.display='block';
+
+  employeeList.innerHTML='';
+
+  employees[purpose]
+    .forEach(person => {
+
+      const button =
+        document.createElement('button');
+
+      button.className='employee';
+
+      button.textContent=
+        person.name;
+
+      button.onclick=()=>{
+
+        employee=person;
+
+        openWork();
+
+      };
+
+      employeeList.appendChild(button);
+
+    });
 
 }
 
 
-/* =========================================================
-   EMPLOYEE CHANGED
-   ========================================================= */
+document
+  .querySelector('#backPurpose')
+  .onclick=()=>{
 
-function employeeChanged(){
+    employeeScreen.style.display='none';
 
-  employee =
-    document.querySelector(
-      '#employeeSelect'
-    ).value;
+    start.style.display='block';
 
-  if(!employee)return;
+  };
+
+
+document
+  .querySelector('#changeUser')
+  .onclick=()=>{
+
+    work.style.display='none';
+
+    bottom.style.display='none';
+
+    employee=null;
+
+    showEmployees();
+
+  };
+
+
+/* =====================================================
+   OPEN WORK
+   ===================================================== */
+
+function openWork(){
+
+  employeeScreen.style.display='none';
+
+  start.style.display='none';
+
+  work.style.display='block';
+
+  bottom.style.display='block';
 
   document
-    .querySelector('#employeeScreen')
-    .classList.remove('active');
+    .querySelector('#workTitle')
+    .textContent =
+      purpose === 'prep'
+        ? 'Заготовки'
+        : 'Закупка';
 
-  if(mode === 'prep'){
+  document
+    .querySelector('#currentUser')
+    .textContent =
+      employee.name;
 
-    document
-      .querySelector('#prepContent')
-      .classList.add('active');
+  selectedBuy.clear();
 
-    document
-      .querySelector('#bottom')
-      .style.display='none';
+  renderWork();
+
+  if(purpose==='prep'){
+
+    loadPrepState();
+
+  }
+
+}
+
+
+/* =====================================================
+   GET PREP STATE
+   ===================================================== */
+
+async function loadPrepState(){
+
+  showSync(true);
+
+  try{
+
+    const response =
+      await fetch(
+        GOOGLE_SCRIPT_URL +
+        '?t=' +
+        Date.now()
+      );
+
+    const data =
+      await response.json();
+
+    if(data.success){
+
+      prepState =
+        data.prepState || {};
+
+      renderWork();
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      'Не удалось обновить состояние. Работаем с текущими данными.'
+    );
+
+  }finally{
+
+    showSync(false);
+
+  }
+
+}
+
+
+/* =====================================================
+   PREP ITEMS
+   ===================================================== */
+
+function getPrepItems(){
+
+  if(employee.role==='prep'){
+    return prepLists.prep;
+  }
+
+  if(employee.role==='admin'){
+    return prepLists.admin;
+  }
+
+  if(employee.role==='sushi'){
+    return prepLists.sushi;
+  }
+
+  return [];
+
+}
+
+
+/* =====================================================
+   BUY ITEMS
+   ===================================================== */
+
+function getBuyItems(){
+
+  if(employee.role==='kitchen'){
+
+    return kitchenBuy;
+
+  }
+
+
+  if(employee.role==='bar'){
+
+    return barBuy;
+
+  }
+
+
+  if(employee.role==='admin'){
+
+    return adminBuy;
+
+  }
+
+
+  if(employee.role==='sushi'){
+
+    return sushiBuy;
+
+  }
+
+
+  return [];
+
+}
+
+
+/* =====================================================
+   RENDER
+   ===================================================== */
+
+function renderWork(){
+
+  content.innerHTML='';
+
+  if(purpose==='prep'){
 
     renderPrep();
 
-  }
+  }else{
 
-  if(mode === 'purchase'){
-
-    document
-      .querySelector('#purchaseContent')
-      .classList.add('active');
-
-    document
-      .querySelector('#bottom')
-      .style.display='block';
-
-    document
-      .querySelector('#bottomName')
-      .textContent=employee;
-
-    renderPurchase();
+    renderBuy();
 
   }
 
 }
 
 
-/* =========================================================
-   BACK
-   ========================================================= */
+/* =====================================================
+   RENDER PREP
+   ===================================================== */
 
-function backToStart(){
+function renderPrep(){
 
-  mode='';
-  employee='';
+  const items =
+    getPrepItems();
 
-  document
-    .querySelector('#employeeScreen')
-    .classList.remove('active');
+  const groups = {};
 
-  document
-    .querySelector('#prepContent')
-    .classList.remove('active');
+  items.forEach(item => {
 
-  document
-    .querySelector('#purchaseContent')
-    .classList.remove('active');
+    const group =
+      item.group || 'Заготовки';
 
-  document
-    .querySelector('#bottom')
-    .style.display='none';
+    if(!groups[group]){
+      groups[group]=[];
+    }
 
-  document
-    .querySelector('#startScreen')
-    .classList.add('active');
+    groups[group].push(item);
+
+  });
+
+
+  Object.entries(groups)
+    .forEach(([group,list]) => {
+
+      const section =
+        document.createElement('div');
+
+      section.className='section';
+
+      const title =
+        document.createElement('div');
+
+      title.className='section-title';
+
+      title.textContent=group;
+
+      const box =
+        document.createElement('div');
+
+      box.className='list';
+
+
+      list.forEach(item => {
+
+        const row =
+          createPrepRow(item);
+
+        box.appendChild(row);
+
+      });
+
+
+      section.appendChild(title);
+
+      section.appendChild(box);
+
+      content.appendChild(section);
+
+    });
+
+
+  updatePrepSummary();
 
 }
 
 
-/* =========================================================
-   API
-   ========================================================= */
+/* =====================================================
+   PREP ROW
+   ===================================================== */
 
-async function api(data){
+function createPrepRow(item){
 
-  const response =
+  const row =
+    document.createElement('div');
+
+  const checked =
+    prepState[item.name] === true;
+
+  row.className =
+    'row' +
+    (checked ? ' checked' : '');
+
+
+  const box =
+    document.createElement('div');
+
+  box.className='box';
+
+
+  const name =
+    document.createElement('div');
+
+  name.className='name';
+
+  name.textContent =
+    item.name +
+    (
+      item.note
+        ? ' · ' + item.note
+        : ''
+    );
+
+
+  row.appendChild(box);
+
+  row.appendChild(name);
+
+
+  row.onclick=()=>{
+
+    const newValue =
+      !(
+        prepState[item.name] === true
+      );
+
+    prepState[item.name]=newValue;
+
+    row.classList.toggle(
+      'checked',
+      newValue
+    );
+
+    updatePrepSummary();
+
+    savePrepToggle(
+      item.name,
+      newValue
+    );
+
+  };
+
+
+  return row;
+
+}
+
+
+/* =====================================================
+   SAVE PREP TO SERVER
+   ===================================================== */
+
+async function savePrepToggle(
+  item,
+  checked
+){
+
+  try{
+
     await fetch(
       GOOGLE_SCRIPT_URL,
       {
@@ -1580,55 +2144,24 @@ async function api(data){
             'text/plain;charset=utf-8'
         },
 
-        body:JSON.stringify(data)
+        body:JSON.stringify({
+
+          action:'togglePrep',
+
+          item:item,
+
+          checked:checked
+
+        })
+
       }
     );
 
-  const result =
-    await response.json();
-
-  if(!result.success){
-
-    throw new Error(
-      result.error ||
-      'Ошибка сервера'
-    );
-
-  }
-
-  return result;
-
-}
-
-
-/* =========================================================
-   LOAD STATE
-   ========================================================= */
-
-async function loadState(){
-
-  try{
-
-    const result =
-      await api({
-        action:'getState'
-      });
-
-    state =
-      result.state || {
-        prep:{}
-      };
-
   }catch(error){
 
-    console.error(error);
-
-    state={
-      prep:{}
-    };
-
-    toast(
-      'Не удалось загрузить состояние'
+    console.error(
+      'Ошибка сохранения:',
+      error
     );
 
   }
@@ -1636,570 +2169,361 @@ async function loadState(){
 }
 
 
-/* =========================================================
-   PREP LIST
-   ========================================================= */
-
-function getPrepList(){
-
-  if(
-    employee === 'Нинель' ||
-    employee === 'Марине'
-  ){
-
-    return prepPrepTeam;
-
-  }
-
-
-  if(
-    employee === 'Арман' ||
-    employee === 'Эдгар'
-  ){
-
-    return prepBar;
-
-  }
-
-
-  if(employee === 'Эмма'){
-
-    return prepAdmin;
-
-  }
-
-
-  /*
-     Все остальные — сушисты
-  */
-
-  return prepSushi;
-
-}
-
-
-/* =========================================================
-   RENDER PREP
-   ========================================================= */
-
-async function renderPrep(){
-
-  document
-    .querySelector('#prepList')
-    .innerHTML =
-    '<div class="loading">Загружаем…</div>';
-
-  await loadState();
-
-  const list =
-    getPrepList();
-
-  let html =
-    '<div class="list">';
-
-  list.forEach(name => {
-
-    const item =
-      state.prep[name];
-
-    const checked =
-      item &&
-      item.checked === true;
-
-    html += `
-
-      <div
-        class="row ${checked ? 'checked' : ''}"
-        onclick="togglePrep('${escapeJs(name)}')"
-      >
-
-        <div class="box"></div>
-
-        <div class="name">
-          ${escapeHtml(name)}
-        </div>
-
-        ${
-          checked
-          ? `<div class="check-info">
-               ${escapeHtml(item.employee || '')}
-             </div>`
-          : ''
-        }
-
-      </div>
-
-    `;
-
-  });
-
-  html +=
-    '</div>';
-
-  document
-    .querySelector('#prepList')
-    .innerHTML=html;
-
-  updatePrepCount(list);
-
-}
-
-
-/* =========================================================
-   TOGGLE PREP
-   ========================================================= */
-
-async function togglePrep(name){
-
-  const current =
-    state.prep[name] &&
-    state.prep[name].checked === true;
-
-  try{
-
-    /*
-       Сразу визуально меняем
-       состояние.
-    */
-
-    if(!state.prep[name]){
-      state.prep[name]={};
-    }
-
-    state.prep[name].checked =
-      !current;
-
-    state.prep[name].employee =
-      employee;
-
-    renderPrepLocal();
-
-    const result =
-      await api({
-
-        action:'togglePrep',
-
-        name:name,
-
-        checked:!current,
-
-        employee:employee
-
-      });
-
-    state =
-      result.state || state;
-
-    renderPrepLocal();
-
-  }catch(error){
-
-    console.error(error);
-
-    toast(
-      'Не удалось сохранить отметку'
-    );
-
-    await renderPrep();
-
-  }
-
-}
-
-
-/* =========================================================
-   LOCAL PREP RENDER
-   ========================================================= */
-
-function renderPrepLocal(){
-
-  const list =
-    getPrepList();
-
-  let html =
-    '<div class="list">';
-
-  list.forEach(name => {
-
-    const item =
-      state.prep[name];
-
-    const checked =
-      item &&
-      item.checked === true;
-
-    html += `
-
-      <div
-        class="row ${checked ? 'checked' : ''}"
-        onclick="togglePrep('${escapeJs(name)}')"
-      >
-
-        <div class="box"></div>
-
-        <div class="name">
-          ${escapeHtml(name)}
-        </div>
-
-        ${
-          checked
-          ? `<div class="check-info">
-               ${escapeHtml(item.employee || '')}
-             </div>`
-          : ''
-        }
-
-      </div>
-
-    `;
-
-  });
-
-  html +=
-    '</div>';
-
-  document
-    .querySelector('#prepList')
-    .innerHTML=html;
-
-  updatePrepCount(list);
-
-}
-
-
-/* =========================================================
-   PREP COUNT
-   ========================================================= */
-
-function updatePrepCount(list){
-
-  const count =
-    list.filter(name => {
-
-      return state.prep[name] &&
-        state.prep[name].checked === true;
-
-    }).length;
-
-  document
-    .querySelector('#prepCount')
-    .textContent =
-    count + '/' + list.length;
-
-  document
-    .querySelector('#prepEmployee')
-    .textContent =
-    employee;
-
-}
-
-
-/* =========================================================
-   PURCHASE DATA
-   ========================================================= */
-
-function getPurchaseData(){
-
-  if(
-    employee === 'Нинель' ||
-    employee === 'Марине'
-  ){
-
-    return purchaseKitchen;
-
-  }
-
-
-  if(
-    employee === 'Арман' ||
-    employee === 'Эдгар'
-  ){
-
-    return purchaseBar;
-
-  }
-
-
-  if(employee === 'Эмма'){
-
-    return purchaseAdmin;
-
-  }
-
-
-  return purchaseSushi;
-
-}
-
-
-/* =========================================================
-   PURCHASE FILTER
-   ========================================================= */
-
-function renderPurchase(){
-
-  purchaseData =
-    getPurchaseData();
-
-  purchaseSelected={};
-
-  const categories =
-    Object.keys(purchaseData);
-
-  const filter =
-    document.querySelector(
-      '#purchaseFilter'
-    );
-
-  filter.innerHTML='';
-
-
-  categories.forEach(
-    (category,index)=>{
-
-      const button =
-        document.createElement('button');
-
-      button.className =
-        'filter-btn' +
-        (index===0 ? ' active' : '');
-
-      button.textContent =
-        category;
-
-      button.onclick=()=>{
-
-        document
-          .querySelectorAll('.filter-btn')
-          .forEach(x=>
-            x.classList.remove('active')
-          );
-
-        button.classList.add('active');
-
-        document
-          .querySelectorAll(
-            '.purchase-category'
-          )
-          .forEach(section=>{
-
-            section.style.display =
-              section.dataset.category === category
-              ? 'block'
-              : 'none';
-
-          });
-
-      };
-
-      filter.appendChild(button);
-
-    }
-  );
-
-
-  const list =
-    document.querySelector(
-      '#purchaseList'
-    );
-
-  list.innerHTML='';
-
-
-  categories.forEach(
-    (category,index)=>{
-
-      const section =
-        document.createElement('div');
-
-      section.className =
-        'purchase-category';
-
-      section.dataset.category =
-        category;
-
-      section.style.display =
-        index===0
-        ? 'block'
-        : 'none';
-
-
-      const title =
-        document.createElement('div');
-
-      title.className =
-        'purchase-category-title';
-
-      title.textContent =
-        category;
-
-
-      const listBox =
-        document.createElement('div');
-
-      listBox.className='list';
-
-
-      purchaseData[category]
-        .forEach(item=>{
-
-          const row =
-            document.createElement('div');
-
-          row.className='row';
-
-          row.onclick=()=>{
-
-            const checked =
-              purchaseSelected[item] === true;
-
-            purchaseSelected[item] =
-              !checked;
-
-            row.classList.toggle(
-              'checked',
-              !checked
-            );
-
-            updateSendButton();
-
-          };
-
-
-          row.innerHTML=`
-
-            <div class="box"></div>
-
-            <div class="name">
-              ${escapeHtml(item)}
-            </div>
-
-          `;
-
-          listBox.appendChild(row);
-
-        });
-
-
-      section.appendChild(title);
-
-      section.appendChild(listBox);
-
-      list.appendChild(section);
-
-    }
-  );
-
-
-  updateSendButton();
-
-}
-
-
-/* =========================================================
-   SEND BUTTON
-   ========================================================= */
-
-function updateSendButton(){
-
-  const count =
-    Object.values(
-      purchaseSelected
-    ).filter(Boolean).length;
-
-  const button =
-    document.querySelector('#send');
-
-  button.disabled =
-    count === 0;
-
-  button.textContent =
-    count
-    ? 'Отправить · ' + count
-    : 'Отправить закупку';
-
-}
-
-
-/* =========================================================
-   SEND PURCHASE
-   ========================================================= */
-
-async function sendPurchase(){
+/* =====================================================
+   PREP SUMMARY
+   ===================================================== */
+
+function updatePrepSummary(){
 
   const items =
-    Object.keys(
-      purchaseSelected
-    ).filter(
+    getPrepItems();
+
+  const checked =
+    items.filter(
       item =>
-        purchaseSelected[item] === true
-    );
+        prepState[item.name] === true
+    ).length;
 
-  if(!items.length){
-
-    toast(
-      'Сначала выбери позиции'
-    );
-
-    return;
-
-  }
+  document
+    .querySelector('#count')
+    .textContent =
+      checked + '/' + items.length;
 
 
-  const button =
-    document.querySelector('#send');
+  const percentage =
+    items.length
+      ? checked / items.length * 100
+      : 0;
 
-  button.disabled=true;
 
-  button.textContent=
+  document
+    .querySelector('#progressBar')
+    .style.width =
+      percentage + '%';
+
+
+  sendButton.disabled =
+    false;
+
+  sendButton.textContent =
+    'Отправить проверку';
+
+}
+
+
+/* =====================================================
+   RENDER BUY
+   ===================================================== */
+
+function renderBuy(){
+
+  const items =
+    getBuyItems();
+
+  const box =
+    document.createElement('div');
+
+  box.className='list';
+
+
+  items.forEach(item => {
+
+    const row =
+      document.createElement('div');
+
+    row.className='row';
+
+
+    const check =
+      document.createElement('div');
+
+    check.className='box';
+
+
+    const name =
+      document.createElement('div');
+
+    name.className='name';
+
+    name.textContent=item;
+
+
+    row.appendChild(check);
+
+    row.appendChild(name);
+
+
+    row.onclick=()=>{
+
+      if(selectedBuy.has(item)){
+
+        selectedBuy.delete(item);
+
+        row.classList.remove(
+          'checked'
+        );
+
+      }else{
+
+        selectedBuy.add(item);
+
+        row.classList.add(
+          'checked'
+        );
+
+      }
+
+      updateBuySummary();
+
+    };
+
+
+    box.appendChild(row);
+
+  });
+
+
+  content.appendChild(box);
+
+
+  updateBuySummary();
+
+}
+
+
+/* =====================================================
+   BUY SUMMARY
+   ===================================================== */
+
+function updateBuySummary(){
+
+  const count =
+    selectedBuy.size;
+
+  document
+    .querySelector('#count')
+    .textContent =
+      count;
+
+
+  document
+    .querySelector('#progressWrap')
+    .style.display='none';
+
+
+  sendButton.disabled =
+    count===0;
+
+
+  sendButton.textContent =
+    'Отправить закупку';
+
+}
+
+
+/* =====================================================
+   SEND
+   ===================================================== */
+
+sendButton.onclick =
+  async()=>{
+
+    if(!employee){
+      return;
+    }
+
+
+    if(purpose==='prep'){
+
+      await sendPrep();
+
+    }else{
+
+      await sendBuy();
+
+    }
+
+  };
+
+
+/* =====================================================
+   SEND PREP
+   ===================================================== */
+
+async function sendPrep(){
+
+  const items =
+    getPrepItems();
+
+
+  const checkedItems =
+    items
+      .filter(
+        item =>
+          prepState[item.name] === true
+      )
+      .map(
+        item => item.name
+      );
+
+
+  const uncheckedItems =
+    items
+      .filter(
+        item =>
+          prepState[item.name] !== true
+      )
+      .map(
+        item => item.name
+      );
+
+
+  sendButton.disabled=true;
+
+  sendButton.textContent=
     'Отправляем…';
 
 
   try{
 
-    let category =
-      'Кухня';
+    const response =
+      await fetch(
+        GOOGLE_SCRIPT_URL,
+        {
+          method:'POST',
 
-    if(
-      employee === 'Арман' ||
-      employee === 'Эдгар'
-    ){
+          headers:{
+            'Content-Type':
+              'text/plain;charset=utf-8'
+          },
 
-      category='Бар';
+          body:JSON.stringify({
 
-    }
+            action:'sendPrep',
 
-    if(employee === 'Эмма'){
+            employee:
+              employee.name,
 
-      category='Упаковка';
+            checkedItems:
+              checkedItems,
 
-    }
+            uncheckedItems:
+              uncheckedItems
 
-    const result =
-      await api({
+          })
 
-        action:'sendPurchase',
-
-        employee:employee,
-
-        category:category,
-
-        items:items
-
-      });
-
-
-    if(result.success){
-
-      toast(
-        '✓ Закупка отправлена'
+        }
       );
 
-      purchaseSelected={};
 
-      renderPurchase();
+    const result =
+      await response.json();
+
+
+    if(!result.success){
+
+      throw new Error(
+        result.error ||
+        'Ошибка Telegram'
+      );
 
     }
+
+
+    toast(
+      '✓ Проверка заготовок отправлена'
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      'Не удалось отправить проверку'
+    );
+
+  }finally{
+
+    updatePrepSummary();
+
+  }
+
+}
+
+
+/* =====================================================
+   SEND BUY
+   ===================================================== */
+
+async function sendBuy(){
+
+  const items =
+    Array.from(selectedBuy);
+
+
+  if(!items.length){
+    return;
+  }
+
+
+  sendButton.disabled=true;
+
+  sendButton.textContent=
+    'Отправляем…';
+
+
+  try{
+
+    const response =
+      await fetch(
+        GOOGLE_SCRIPT_URL,
+        {
+          method:'POST',
+
+          headers:{
+            'Content-Type':
+              'text/plain;charset=utf-8'
+          },
+
+          body:JSON.stringify({
+
+            action:'sendBuy',
+
+            employee:
+              employee.name,
+
+            items:items
+
+          })
+
+        }
+      );
+
+
+    const result =
+      await response.json();
+
+
+    if(!result.success){
+
+      throw new Error(
+        result.error ||
+        'Ошибка Telegram'
+      );
+
+    }
+
+
+    toast(
+      '✓ Закупка отправлена'
+    );
+
+
+    selectedBuy.clear();
+
+    renderBuy();
+
 
   }catch(error){
 
@@ -2211,31 +2535,29 @@ async function sendPurchase(){
 
   }finally{
 
-    updateSendButton();
+    updateBuySummary();
 
   }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    TOAST
-   ========================================================= */
+   ===================================================== */
 
 function toast(text){
 
-  const element =
-    document.querySelector(
-      '#toast'
-    );
+  toastEl.textContent=text;
 
-  element.textContent=text;
+  toastEl.classList.add('show');
 
-  element.classList.add('show');
 
   setTimeout(
     ()=>{
-      element.classList.remove('show');
+      toastEl.classList.remove(
+        'show'
+      );
     },
     3000
   );
@@ -2243,37 +2565,26 @@ function toast(text){
 }
 
 
-/* =========================================================
-   ESCAPE
-   ========================================================= */
+/* =====================================================
+   SYNC
+   ===================================================== */
 
-function escapeHtml(value){
+function showSync(show){
 
-  return String(value)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#039;');
+  syncEl.classList.toggle(
+    'show',
+    show
+  );
 
 }
 
 
-function escapeJs(value){
+/* =====================================================
+   START
+   ===================================================== */
 
-  return String(value)
-    .replace(/\\/g,'\\\\')
-    .replace(/'/g,"\\'");
-}
+renderWork();
 
-
-/* =========================================================
-   INIT
-   ========================================================= */
-
-console.log(
-  'LooLoo Kitchen V2'
-);
 
 </script>
 
